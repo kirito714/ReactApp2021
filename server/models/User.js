@@ -18,6 +18,9 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
+  savedConcert: {
+  [concertSchema]
+  },
 });
 
 const User = model("User", userSchema);
