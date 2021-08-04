@@ -7,6 +7,7 @@
  ## table of contents
  #### where the app is 
  #### user story
+ #### task breakdown
  #### wireframe
  #### contact information
 
@@ -24,6 +25,10 @@ When i find an event that i think is intersting<br>
 Then i have the ability to save the event and all correspoding information about that event<br>
 When i dont know the exact event i want to look for<br>
 Then i can search for the type of event im intersted in and the results will populate<br>
+
+### task breakdown
+Joe and Paola will be working on the backend<br>
+Cassie and Mikey will be working on the front end<br>
 
 ### Wireframe
 ![figma wireframe](client/src/images/wireframe.png?raw=true "Wireframe")
