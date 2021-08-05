@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Signup from "./pages/SignupPage";
-import Container from "./components/Container";
+// import Container from "./components/Container";
+import Search from "./pages/SearchPage";
 
 
 function App() {
