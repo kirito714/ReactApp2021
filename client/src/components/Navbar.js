@@ -10,7 +10,7 @@ export default function Navbar() {
           <a href="#!" className="nav-logo">
             Events near you!
           </a>
-          <a href="#" data-target="mobile-demo" className="sidenav-trigger">
+          {/* <a href="#" data-target="mobile-demo" className="sidenav-trigger">
             <i className="material-icons">menu</i>
           </a>
           <ul class="right hide-on-med-and-down">
@@ -30,7 +30,7 @@ export default function Navbar() {
             <li>
               <a href="">Home</a>
             </li>
-          </ul>
+          </ul> */}
         </div>
       </nav>
 
@@ -51,7 +51,7 @@ export default function Navbar() {
         <li>
           <a href="mobile.html">Home</a>
         </li>
-      </ul>
+      </ul> */}
     </div>
   );
 }

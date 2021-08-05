@@ -27,7 +27,7 @@ export const ADD_USER = gql`
 export const SAVE_CONCERT = gql`
    mutation saveConcert($title: String!, $description: String!, $venue: String!) {
        saveConcert(title: $title, description: $description, venue: $venue ) {
-           savedConcerts {
+           savedConcert {
                title
            }
        }
