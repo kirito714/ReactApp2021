@@ -13,6 +13,7 @@ const typeDefs = gql`
     _id: ID
     title: String
     description: String
+    venue: String
   }
 
   type Auth {
@@ -21,15 +22,13 @@ const typeDefs = gql`
   }
 
   type Query {
-    users: [User]
-    user(username: String!): User
     me: User
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addConcert(title: String!,description:String!): User
+    saveConcert(title: String!, description:String!, venue: String!): User
     removeConcert(thoughtId: ID!): User
    
   }
