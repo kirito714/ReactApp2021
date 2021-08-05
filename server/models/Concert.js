@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema } = require("mongoose");
 
 const concertSchema = new Schema({
   concertId: {
@@ -12,9 +12,12 @@ const concertSchema = new Schema({
   description: {
     type: String,
   },
+  venue: {
+    type: String,
+  }
   
 });
 
-const Concert = model("Concert", concertSchema);
 
-module.exports = Concert;
+
+module.exports = concertSchema;
