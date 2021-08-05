@@ -7,51 +7,51 @@ export default function Navbar() {
     <div>
       <nav>
         <div class="nav-wrapper">
-          <a href="#!" className="nav-logo">
+          <div className="nav-logo">
             Events near you!
-          </a>
-          {/* <a href="#" data-target="mobile-demo" className="sidenav-trigger">
+          </div>
+          <div data-target="mobile-demo" className="sidenav-trigger">
             <i className="material-icons">menu</i>
-          </a>
+          </div>
           <ul class="right hide-on-med-and-down">
             <Link to="Signup">
               <li>
-                <a>Sign up</a>
+                <p>Sign up</p>
               </li>
             </Link>
             <Link to="Profile">
               <li>
-                <a href="">Profile</a>
+                <p >Profile</p>
               </li>
             </Link>
             <li>
-              <a href="">Search</a>
+              <p >Search</p>
             </li>
             <li>
-              <a href="">Home</a>
+              <p>Home</p>
             </li>
-          </ul> */}
+          </ul>
         </div>
       </nav>
 
       <ul class="sidenav" id="mobile-demo">
         <Link to="Signup">
           <li>
-            <a>Sign up</a>
+            <p>Sign up</p>
           </li>
         </Link>
-        <Link to="Profile">
+        <Link to="Profile">s
           <li>
-            <a href="">Profile</a>
+            <p >Profile</p>
           </li>
         </Link>
         <li>
-          <a href="collapsible.html">Search</a>
+          <p >Search</p>
         </li>
         <li>
-          <a href="mobile.html">Home</a>
+          <p>Home</p>
         </li>
-      </ul> */}
+      </ul>
     </div>
   );
 }
