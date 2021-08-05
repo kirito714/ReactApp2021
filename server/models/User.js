@@ -21,7 +21,7 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  savedConcert: [concertSchema],
+  savedConcert: [Concert],
 });
 
 // hash user password

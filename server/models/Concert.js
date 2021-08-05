@@ -14,10 +14,7 @@ const concertSchema = new Schema({
   },
   venue: {
     type: String,
-  }
-  
+  },
 });
-
-
 
 module.exports = concertSchema;
