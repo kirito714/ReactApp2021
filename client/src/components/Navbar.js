@@ -6,52 +6,62 @@ export default function Navbar() {
   return (
     <div>
       <nav>
-        <div class="nav-wrapper">
-          <div className="nav-logo">
+        <div className="nav-wrapper">
+          <div  className="nav-logo">
             Events near you!
           </div>
-          <div data-target="mobile-demo" className="sidenav-trigger">
+           <div data-target="mobile-demo" className="sidenav-trigger">
             <i className="material-icons">menu</i>
           </div>
-          <ul class="right hide-on-med-and-down">
-            <Link to="Signup">
+          <ul className="right hide-on-med-and-down">
+            <Link to="/Signup">
               <li>
-                <p>Sign up</p>
+                Sign up
               </li>
             </Link>
-            <Link to="Profile">
+            <Link to="/Profile">
               <li>
-                <p >Profile</p>
+                <p>Profile</p>
               </li>
             </Link>
+            <Link to="/Search">
             <li>
-              <p >Search</p>
+              <p>Search</p>
             </li>
+            </Link>
+            <Link to="/Home">
             <li>
               <p>Home</p>
             </li>
-          </ul>
+            </Link>
+            
+
+          </ul> 
         </div>
       </nav>
 
-      <ul class="sidenav" id="mobile-demo">
+      <ul className="sidenav" id="mobile-demo">
         <Link to="Signup">
           <li>
-            <p>Sign up</p>
+            <p >Sign up</p>
           </li>
         </Link>
         <Link to="Profile">s
           <li>
-            <p >Profile</p>
+            <p href="">Profile</p>
           </li>
         </Link>
+        <Link to="/Search">
         <li>
-          <p >Search</p>
+          <p href="">Search</p>
         </li>
+        </Link>
+        <Link to="/Home">
         <li>
-          <p>Home</p>
+          <p href="">Home</p>
         </li>
-      </ul>
+        </Link>
+      </ul> 
     </div>
   );
 }
