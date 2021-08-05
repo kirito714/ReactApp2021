@@ -6,52 +6,62 @@ export default function Navbar() {
   return (
     <div>
       <nav>
-        <div class="nav-wrapper">
-          <a href="#!" className="nav-logo">
+        <div className="nav-wrapper">
+          <div  className="nav-logo">
             Events near you!
-          </a>
-          {/* <a href="#" data-target="mobile-demo" className="sidenav-trigger">
+          </div>
+           <div data-target="mobile-demo" className="sidenav-trigger">
             <i className="material-icons">menu</i>
-          </a>
-          <ul class="right hide-on-med-and-down">
-            <Link to="Signup">
+          </div>
+          <ul className="right hide-on-med-and-down">
+            <Link to="/Signup">
               <li>
-                <a>Sign up</a>
+                Sign up
               </li>
             </Link>
-            <Link to="Profile">
+            <Link to="/Profile">
               <li>
-                <a href="">Profile</a>
+                <p>Profile</p>
               </li>
             </Link>
+            <Link to="/Search">
             <li>
-              <a href="">Search</a>
+              <p>Search</p>
             </li>
+            </Link>
+            <Link to="/Home">
             <li>
-              <a href="">Home</a>
+              <p>Home</p>
             </li>
-          </ul> */}
+            </Link>
+            
+
+          </ul> 
         </div>
       </nav>
 
-      <ul class="sidenav" id="mobile-demo">
+      <ul className="sidenav" id="mobile-demo">
         <Link to="Signup">
           <li>
-            <a>Sign up</a>
+            <p >Sign up</p>
           </li>
         </Link>
         <Link to="Profile">
           <li>
-            <a href="">Profile</a>
+            <p href="">Profile</p>
           </li>
         </Link>
+        <Link to="/Search">
         <li>
-          <a href="collapsible.html">Search</a>
+          <p href="">Search</p>
         </li>
+        </Link>
+        <Link to="/Home">
         <li>
-          <a href="mobile.html">Home</a>
+          <p href="">Home</p>
         </li>
-      </ul> */}
+        </Link>
+      </ul> 
     </div>
   );
 }
