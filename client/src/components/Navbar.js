@@ -1,5 +1,6 @@
 import React from "react";
 import "./Navbar.css";
+import { Link } from 'react-router-dom'
 
 export default function Navbar() {
   return (
@@ -13,17 +14,21 @@ export default function Navbar() {
             <i className="material-icons">menu</i>
           </a>
           <ul class="right hide-on-med-and-down">
+              <Link to='Signup'>
+            <li>
+              <a>Sign up</a>
+            </li>
+            </Link>
+            <Link to='Profile'>
             <li>
               <a href="">Profile</a>
             </li>
+            </Link>
             <li>
               <a href="">Search</a>
             </li>
             <li>
-              <a href="">Javascript</a>
-            </li>
-            <li>
-              <a href="">Mobile</a>
+              <a href="">Home</a>
             </li>
           </ul>
         </div>
@@ -31,16 +36,16 @@ export default function Navbar() {
 
       <ul class="sidenav" id="mobile-demo">
         <li>
-          <a href="sass.html">Profile</a>
+          <a href="sass.html">Sign up</a>
         </li>
         <li>
-          <a href="badges.html">Search</a>
+          <a href="badges.html">Profile</a>
         </li>
         <li>
-          <a href="collapsible.html">Javascript</a>
+          <a href="collapsible.html">Search</a>
         </li>
         <li>
-          <a href="mobile.html">Mobile</a>
+          <a href="mobile.html">Home</a>
         </li>
       </ul>
     </div>

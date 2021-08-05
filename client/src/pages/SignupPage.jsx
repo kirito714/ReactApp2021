@@ -1,9 +1,8 @@
-import React from "react";
-// import './Signupform.css'
-
-export default function Signupform() {
-  return (
-    <div classNameNameName="container">
+ export default function SignupPage() {
+    return (
+        <>
+        <h1>Sign up or log in!</h1>
+        <div classNameNameName="container">
       <form className="form login-form" id="">
         <input
           classNameName="form-input"
@@ -51,5 +50,6 @@ export default function Signupform() {
         </button>
       </form>
     </div>
-  );
+        </>
+    )
 }
