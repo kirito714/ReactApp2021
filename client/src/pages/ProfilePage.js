@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
 import Auth from '../utils/auth';
-import { saveConcertIds, removeConcertIds } from "../utils/localStorage";
+import { saveConcertIds } from "../utils/localStorage";
 import { searchConcertData } from "../utils/API";
 
 import { useMutation, useQuery } from '@apollo/client';
 import { GET_ME } from "../utils/queries";
 import { SAVE_CONCERT } from '../utils/mutations';
 
+// FUNCTION TO SEARCH CONCERTS AND CHOOSE WHICH TO SAVE ................
 const searchConcerts = () => {
     // create state to hold our returned API Data from predicthq
     const [searchedConcerts, setSearchedConcerts] = useState([]);
@@ -129,4 +130,24 @@ const searchConcerts = () => {
 
 }
 
+
+//FUNCTION TO CREATE SAVED CONCERTS CARDS ..................
+
+const savedConcerts = () => {
+
+    //This will query our Database for our user information including,
+    //the saved concerts
+    //To access this data in JSX for the cards, it will be {userData.me.savedConcerts}
+    const { loading, data } = useQuery(GET_ME);
+    const userData = data;
+
+    return (
+        //JSX with cards and info for the concert
+        <Card />
+    );
+
+}
+
+
 export default searchConcerts;
+export default savedConcerts;
