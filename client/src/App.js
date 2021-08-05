@@ -14,7 +14,7 @@ function App() {
     <Router>
       <Navbar />
       <main>
-      <Container />
+      {/* <Container /> */}
       {/* <Signupform /> */}
       <Route exact path="/Signup">
         <Signup />
