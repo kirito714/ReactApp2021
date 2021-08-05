@@ -52,7 +52,7 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-    savedConcert: async (parent, { title, description, venue }, context) => {
+    savedConcert: async (parent, { title, description, venue, place, date }, context) => {
       if (context.user) {
         //add the concert to saved concert
         //then push the concert id into our savedConcert
@@ -60,7 +60,7 @@ const resolvers = {
           { _id: context.user._id },
           {
             $addToSet: {
-              savedConcert: { title, description, venue},
+              savedConcert: { title, description, venue, place, date},
             },
           },
           { new: true, runValidators: true }
