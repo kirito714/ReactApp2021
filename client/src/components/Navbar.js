@@ -46,7 +46,7 @@ export default function Navbar() {
             <p >Sign up</p>
           </li>
         </Link>
-        <Link to="Profile">
+        <Link to="Profile">s
           <li>
             <p href="">Profile</p>
           </li>
