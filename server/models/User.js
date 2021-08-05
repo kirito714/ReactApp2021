@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const  Concert  = require("./Concert.js");
 
 const userSchema = new Schema({
   username: {
@@ -18,7 +19,7 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  savedConcert: [concertSchema],
+  savedConcert: [Concert],
 });
 
 const User = model("User", userSchema);
