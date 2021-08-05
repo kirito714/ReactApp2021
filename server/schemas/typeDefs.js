@@ -6,10 +6,11 @@ const typeDefs = gql`
     username: String
     email: String
     password: String
-    savedConcert: [savedConcert]
+    concertCount: Int
+    savedConcert: [concertSchema]
   }
 
-  type Concert {
+  type concertSchema {
     _id: ID
     title: String
     description: String

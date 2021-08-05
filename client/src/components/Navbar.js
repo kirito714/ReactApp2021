@@ -1,6 +1,6 @@
 import React from "react";
 import "./Navbar.css";
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 export default function Navbar() {
   return (
@@ -10,10 +10,10 @@ export default function Navbar() {
           <a href="#!" className="nav-logo">
             Events near you!
           </a>
-          <a href="#" data-target="mobile-demo" className="sidenav-trigger">
+          {/* <a href="#" data-target="mobile-demo" className="sidenav-trigger">
             <i className="material-icons">menu</i>
-          </a>
-          <ul class="right hide-on-med-and-down">
+          </a> */}
+          {/* <ul class="right hide-on-med-and-down">
               <Link to='Signup'>
             <li>
               <a>Sign up</a>
@@ -30,11 +30,11 @@ export default function Navbar() {
             <li>
               <a href="">Home</a>
             </li>
-          </ul>
+          </ul> */}
         </div>
       </nav>
 
-      <ul class="sidenav" id="mobile-demo">
+      {/* <ul class="sidenav" id="mobile-demo">
         <li>
           <a href="sass.html">Sign up</a>
         </li>
@@ -47,7 +47,7 @@ export default function Navbar() {
         <li>
           <a href="mobile.html">Home</a>
         </li>
-      </ul>
+      </ul> */}
     </div>
   );
 }

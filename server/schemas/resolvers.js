@@ -1,7 +1,6 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Concert } = require("../models");
+const { User, concertSchema } = require("../models");
 const { signToken } = require("../utils/auth");
-
 
 // query for me mutations
 const resolvers = {
@@ -43,7 +42,7 @@ const resolvers = {
     // removeConcert by concertId using the findOneAndDelete() then await and update
     removeConcert: async (parent, { concertId }, context) => {
       if (context.user) {
-        const concert = await Concert.findOneAndDelete({
+        const concert = await concertSchema.findOneAndDelete({
           _id: concertId,
         });
 
@@ -52,6 +51,25 @@ const resolvers = {
         return concert;
       }
       throw new AuthenticationError("You need to be logged in!");
+    },
+    savedConcert: async (parent, { title, description, venue }, context) => {
+      if (context.user) {
+        //add the concert to saved concert
+        //then push the concert id into our savedConcert
+        const savedConcertArray = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          {
+            $addToSet: {
+              savedConcert: { title, description, venue},
+            },
+          },
+          { new: true, runValidators: true }
+        );
+
+        return savedConcertArray;
+      }
+
+      throw new AuthenticationError("You need to be logged in to save a Concert");
     },
   },
 };
