@@ -4,7 +4,7 @@ var axios = require("axios").default;
 // cityName = this is what the user types into input field to search by city
 
 
-function concertData (cityName) {
+function searchConcertData (cityName) {
     const apiKey = "72a52a72e7a14c1a47a69d46ea5e7322";
     
     const options = {
@@ -54,6 +54,6 @@ function concertData (cityName) {
 
 }
 
-export default concertData;
+export default searchConcertData;
 
 
