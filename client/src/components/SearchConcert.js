@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import Auth from "../utils/auth";
 import { saveConcertIds } from "../utils/localStorage";
-import { SearchConcertData } from "../utils/API";
+import SearchConcertData  from "../utils/API";
 
 import { useMutation, useQuery } from "@apollo/client";
 import { GET_ME } from "../utils/queries";
@@ -119,13 +119,7 @@ const SearchConcerts = () => {
   };
 
   return (
-    <>
-      <h1>Profile page!</h1>
-    </>
-    // JSX containing the form =>
-    //handleFormSubmit onSubmit for searching concerts
-    // JSX containing the search results as cards??? =>
-    // handleSaveConcert onClick for saving the concert
+  
   );
 };
 
