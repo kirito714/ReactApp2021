@@ -5,6 +5,8 @@ import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
+import Searchform from "../components/Searchform";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     '& .MuiTextField-root': {
@@ -19,8 +21,9 @@ export default function SearchPage() {
   return (
     <>
       <h1>Home Page!</h1>
+      <Searchform />
 
-      <Container maxWidth="sm">
+      {/* <Container maxWidth="sm">
         <h1>Sign Up</h1>
       <form className={classes.root} noValidate autoComplete="off">
         <div>
@@ -79,7 +82,7 @@ export default function SearchPage() {
         />
         </div>
       </form>
-      </Container>
+      </Container> */}
     </>
   );
 }
