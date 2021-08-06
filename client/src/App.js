@@ -12,6 +12,7 @@ import Signup from "./pages/SignupPage";
 // import Container from "./components/Container";
 import Search from "./pages/SearchPage";
 import HomePage from "./pages/Home";
+import Login from "./pages/Login";
 import { setContext } from "@apollo/client/link/context";
 
 // Construct our main GraphQL API endpoint
@@ -53,6 +54,9 @@ function App() {
 
         <Route exact path="/Signup">
           <Signup />
+        </Route>
+        <Route exact path="/Login">
+          <Login/>
         </Route>
 
         {/* <Route exact path="/Search">
