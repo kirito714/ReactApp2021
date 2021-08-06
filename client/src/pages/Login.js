@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 import TextField from "@material-ui/core/TextField";
@@ -55,6 +55,7 @@ const Login = (props) => {
 
   return (
     <>
+<<<<<<< HEAD
       <h1>Login Page!</h1>
 
       <Container maxWidth="sm">
@@ -116,6 +117,67 @@ const Login = (props) => {
 
         {error && <div>{error.message}</div>}
       </Container>
+=======
+          <h1>Login Page!</h1>
+
+          <Container maxWidth="sm">
+          <h2>Log in</h2>
+            {data ? (
+              <p>
+                Success! You may now head{" "}
+                <Link to="/">back to the homepage.</Link>
+              </p>
+            ) : (
+              <form className={classes.root} noValidate autoComplete="off" onSubmit={handleFormSubmit}>
+                <div>
+                <TextField
+                  // className="form-input"
+                  // placeholder="Your email"
+                  // name="email"
+                  // type="email"
+                  id="filled-email-input"
+                  name="email"
+                  label="Your email"
+                  type="email"
+                  autoComplete="current-email"
+                  variant="filled"
+                  value={formState.email}
+                  onChange={handleChange}
+                />
+                </div>
+
+                <div>
+                <TextField
+                  // className="form-input"
+                  // placeholder="******"
+                  // name="password"
+                  // type="password"
+                  id="filled-password-input"
+                  name="password"
+                  label="******"
+                  type="password"
+                  autoComplete="current-password"
+                  variant="filled"
+                  value={formState.password}
+                  onChange={handleChange}
+                />
+                </div>
+                <button
+                  className="btn btn-block btn-primary"
+                  style={{ cursor: "pointer" }}
+                  type="submit"
+                >
+                  Submit
+                </button>
+              </form>
+            )}
+
+            {error && (<div>{error.message}</div>)}
+
+            </Container>
+
+
+>>>>>>> bb6b1379820af9658a5b62cc2d88826ee6c21d80
     </>
   );
 };
