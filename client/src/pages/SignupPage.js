@@ -44,7 +44,7 @@ export default function SignupPage() {
           <div>
             {data ? (
               <p>
-                Success! You may now head{' '}
+                Success! You may now head{'./Profile '}
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (

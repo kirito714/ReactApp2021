@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 
@@ -49,7 +49,7 @@ const Login = (props) => {
             {data ? (
               <p>
                 Success! You may now head{" "}
-                <Link to="/">back to the homepage.</Link>
+                <Link to="/Profile">back to the Profile.</Link>
               </p>
             ) : (
               <form onSubmit={handleFormSubmit}>
@@ -69,11 +69,8 @@ const Login = (props) => {
                   value={formState.password}
                   onChange={handleChange}
                 />
-                <button
-                  className="btn btn-block btn-primary"
-                  style={{ cursor: "pointer" }}
-                  type="submit"
-                >
+
+                <button style={{ cursor: "pointer" }} type="submit">
                   Submit
                 </button>
               </form>
