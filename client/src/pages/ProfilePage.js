@@ -9,7 +9,7 @@ import { GET_ME } from "../utils/queries";
 import { SAVE_CONCERT } from '../utils/mutations';
 
 // FUNCTION TO SEARCH CONCERTS AND CHOOSE WHICH TO SAVE ................
-const searchConcerts = () => {
+const SearchConcerts = () => {
     // create state to hold our returned API Data from predicthq
     const [searchedConcerts, setSearchedConcerts] = useState([]);
     // create state to hold our search field data (from the input field in the search form)
@@ -133,7 +133,7 @@ const searchConcerts = () => {
 
 //FUNCTION TO CREATE SAVED CONCERTS CARDS ..................
 
-const savedConcerts = () => {
+const SavedConcerts = () => {
 
     //This will query our Database for our user information including,
     //the saved concerts
@@ -149,5 +149,5 @@ const savedConcerts = () => {
 }
 
 
-export default searchConcerts;
-export default savedConcerts;
+export default SearchConcerts;
+export default SavedConcerts;
