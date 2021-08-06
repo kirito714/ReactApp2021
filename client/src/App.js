@@ -13,14 +13,14 @@ function App() {
     //  <ApolloProvider>
     <Router>
       <Navbar />
-      <main>
       {/* <Container /> */}
       {/* <Signupform /> */}
       <Route exact path="/Signup">
         <Signup />
       </Route>
+      <Route exact path="/Search"> <Signup />
+      </Route>
       {/*<Route  exact path="/" component={} /> */}
-      </main>
       <Footer/>
       {/* <script */}
     </Router>
