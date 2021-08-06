@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 import TextField from '@material-ui/core/TextField';
@@ -62,7 +62,7 @@ const Login = (props) => {
             {data ? (
               <p>
                 Success! You may now head{" "}
-                <Link to="/">back to the homepage.</Link>
+                <Link to="/Profile">back to the Profile.</Link>
               </p>
             ) : (
               <form className={classes.root} noValidate autoComplete="off" onSubmit={handleFormSubmit}>
@@ -98,12 +98,17 @@ const Login = (props) => {
                   value={formState.password}
                   onChange={handleChange}
                 />
+<<<<<<< HEAD
+
+                <button style={{ cursor: "pointer" }} type="submit">
+=======
                 </div>
                 <button
                   className="btn btn-block btn-primary"
                   style={{ cursor: "pointer" }}
                   type="submit"
                 >
+>>>>>>> 215ae5a0684d18429d31a5a15c6ad674d7b3ddee
                   Submit
                 </button>
               </form>
