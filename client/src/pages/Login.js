@@ -2,10 +2,23 @@ import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
+import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
 
 import Auth from "../utils/auth";
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: '60ch',
+    },
+  },
+}));
+
 const Login = (props) => {
+  const classes = useStyles();
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
@@ -41,34 +54,51 @@ const Login = (props) => {
   };
 
   return (
-    <main>
-      <div>
-        <div>
-          <h4>Login</h4>
-          <div>
+    <>
+          <h1>Login Page!</h1>
+
+          <Container maxWidth="sm">
+          <h2>Log in</h2>
             {data ? (
               <p>
                 Success! You may now head{" "}
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
-              <form onSubmit={handleFormSubmit}>
-                <input
-                  className="form-input"
-                  placeholder="Your email"
+              <form className={classes.root} noValidate autoComplete="off" onSubmit={handleFormSubmit}>
+                <div>
+                <TextField
+                  // className="form-input"
+                  // placeholder="Your email"
+                  // name="email"
+                  // type="email"
+                  id="filled-email-input"
                   name="email"
+                  label="Your email"
                   type="email"
+                  autoComplete="current-email"
+                  variant="filled"
                   value={formState.email}
                   onChange={handleChange}
                 />
-                <input
-                  className="form-input"
-                  placeholder="******"
+                </div>
+
+                <div>
+                <TextField
+                  // className="form-input"
+                  // placeholder="******"
+                  // name="password"
+                  // type="password"
+                  id="filled-password-input"
                   name="password"
+                  label="******"
                   type="password"
+                  autoComplete="current-password"
+                  variant="filled"
                   value={formState.password}
                   onChange={handleChange}
                 />
+                </div>
                 <button
                   className="btn btn-block btn-primary"
                   style={{ cursor: "pointer" }}
@@ -79,11 +109,12 @@ const Login = (props) => {
               </form>
             )}
 
-            {error && <div>{error.message}</div>}
-          </div>
-        </div>
-      </div>
-    </main>
+            {error && (<div>{error.message}</div>)}
+
+            </Container>
+
+
+    </>
   );
 };
 
