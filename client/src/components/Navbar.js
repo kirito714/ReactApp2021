@@ -1,67 +1,141 @@
-import React from "react";
-import "./Navbar.css";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+// import MenuIcon from '@material-ui/icons/Menu';
+import HomeIcon from '@material-ui/icons/Home';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import Switch from '@material-ui/core/Switch';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormGroup from '@material-ui/core/FormGroup';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
 import { Link } from "react-router-dom";
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
+
 export default function Navbar() {
-  return (
-    <div>
-      <nav>
-        <div className="nav-wrapper">
-          <div  className="nav-logo">
-            Events near you!
-          </div>
-           <div data-target="mobile-demo" className="sidenav-trigger">
-            <i className="material-icons">menu</i>
-          </div>
-          <ul className="right hide-on-med-and-down">
-            <Link to="/Signup">
-              <li>
-                Sign up
-              </li>
-            </Link>
-            <Link to="/Profile">
-              <li>
-                <p>Profile</p>
-              </li>
-            </Link>
-            <Link to="/Search">
-            <li>
-              <p>Search</p>
-            </li>
-            </Link>
-            <Link to="/Home">
-            <li>
-              <p>Home</p>
-            </li>
-            </Link>
-            
+    const classes = useStyles();
+    const [auth, setAuth] = React.useState(true);
+    const [anchorProfile, setAnchorProfile] = React.useState(null);
+    const [anchorMenu, setAnchorMenu] = React.useState(null);
+    const openProfile = Boolean(anchorProfile);
+    const openMenu = Boolean(anchorMenu);
+  
+    const handleChange = (event) => {
+      setAuth(event.target.checked);
+    };
+  
+    const handleProfile = (event) => {
+      setAnchorProfile(event.currentTarget);
+    };
 
-          </ul> 
-        </div>
-      </nav>
-
-      <ul className="sidenav" id="mobile-demo">
-        <Link to="Signup">
-          <li>
-            <p >Sign up</p>
-          </li>
-        </Link>
-        <Link to="Profile">s
-          <li>
-            <p href="">Profile</p>
-          </li>
-        </Link>
-        <Link to="/Search">
-        <li>
-          <p href="">Search</p>
-        </li>
-        </Link>
-        <Link to="/Home">
-        <li>
-          <p href="">Home</p>
-        </li>
-        </Link>
-      </ul> 
-    </div>
+    const handleMenu = (event) => {
+      setAnchorMenu(event.currentTarget);
+    }
+  
+    const handleCloseProfile = () => {
+      setAnchorProfile(null);
+    };
+  
+    const handleCloseMenu = () => {
+      setAnchorMenu(null);
+    };
+  
+    return (
+      <div className={classes.root}>
+        {/* <FormGroup>
+          <FormControlLabel
+            control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
+            label={auth ? 'Logout' : 'Login'}
+          />
+        </FormGroup> */}
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton 
+              edge="start" 
+              className={classes.menuButton} 
+              color="inherit" 
+              aria-label="menu"
+              onClick={handleMenu}
+              >
+              <HomeIcon />
+            </IconButton>
+            <Menu
+                  id="menu-appbar"
+                  anchorProfile={anchorMenu}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  open={openMenu}
+                  onClose={handleCloseMenu}
+                >
+                  <Link to="/">
+                    <MenuItem onClick={handleCloseMenu}>Home</MenuItem>
+                  </Link>
+                  {/* <MenuItem onClick={handleCloseMenu}>Search</MenuItem> */}
+                </Menu>
+            <Typography variant="h6" className={classes.title}>
+              Events Near You!
+            </Typography>
+            {auth && (
+              <div>
+                <IconButton
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleProfile}
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButton>
+                <Menu
+                  id="menu-appbar"
+                  anchorProfile={anchorProfile}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={openProfile}
+                  onClose={handleCloseProfile}
+                >
+                  <Link to="/Login">
+                    <MenuItem onClick={handleCloseProfile}>Login</MenuItem>
+                  </Link>
+                  <Link to="/SignUp">
+                    <MenuItem onClick={handleCloseProfile}>SignUp</MenuItem>
+                  </Link>
+                  <Link to="/">
+                    <MenuItem onClick={handleCloseProfile}>Logout</MenuItem>
+                  </Link>
+                </Menu>
+              </div>
+            )}
+          </Toolbar>
+        </AppBar>
+      </div>
   );
 }
