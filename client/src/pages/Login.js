@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
-import TextField from "@material-ui/core/TextField";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
+import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Button from '@material-ui/core/Button';
+import PersonIcon from '@material-ui/icons/Person';
 
 import Auth from "../utils/auth";
 
@@ -14,6 +16,13 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
       width: "60ch",
     },
+  },
+  iconButton: {
+    padding: 10,
+  },
+  button: {
+    margin: theme.spacing(1),
+    marginLeft: 215
   },
 }));
 
@@ -99,13 +108,15 @@ const Login = (props) => {
                   onChange={handleChange}
                 />
                 </div>
-                <button
-                  className="btn btn-block btn-primary"
-                  style={{ cursor: "pointer" }}
+                <Button
                   type="submit"
-                >
+                  variant="contained"
+                  color="primary"
+                  className={classes.button}
+                  endIcon={<PersonIcon/>}
+                  >
                   Submit
-                </button>
+                </Button>
               </form>
             )}
 

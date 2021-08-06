@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
-import TextField from "@material-ui/core/TextField";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
+import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Button from '@material-ui/core/Button';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,6 +15,13 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
       width: "60ch",
     },
+  },
+  iconButton: {
+    padding: 10,
+  },
+  button: {
+    margin: theme.spacing(1),
+    marginLeft: 215
   },
 }));
 
@@ -99,31 +108,40 @@ export default function SignupPage() {
               />
             </div>
 
-            <div>
-              <TextField
-                // className="form-input"
-                // name="password"
-                // type="password"
-                id="filled-password-input"
-                name="password"
-                label="******"
-                type="password"
-                autoComplete="current-password"
-                variant="filled"
-                // value={formState.password}
-                value={formState.name}
-                onChange={handleChange}
-              />
-            </div>
-            <button
-              className="btn btn-block btn-primary"
-              style={{ cursor: "pointer" }}
-              type="submit"
-            >
-              Submit
-            </button>
-          </form>
-        )}
+                <div>
+                  <TextField
+                  // className="form-input"
+                  // name="password"
+                  // type="password"
+                  id="filled-password-input"
+                  name="password"
+                  label="Password"
+                  type="password"
+                  autoComplete="current-password"
+                  variant="filled"
+                  // value={formState.password}
+                  value={formState.name}
+                  onChange={handleChange}
+                />
+                </div>
+                {/* <button
+                  className="btn btn-block btn-primary"
+                  style={{ cursor: 'pointer' }}
+                  type="submit"
+                >
+                  Submit
+                </button> */}
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  className={classes.button}
+                  endIcon={<PersonAddIcon/>}
+                  >
+                  Submit
+                </Button>
+              </form>
+            )}
 
         {error && <div>{error.message}</div>}
       </Container>
