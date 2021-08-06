@@ -75,7 +75,7 @@ export default function Navbar() {
             </IconButton>
             <Menu
                   id="menu-appbar"
-                  anchorProfile={anchorMenu}
+                  anchorprofile={anchorMenu}
                   anchorOrigin={{
                     vertical: 'top',
                     horizontal: 'left',
@@ -109,7 +109,7 @@ export default function Navbar() {
                 </IconButton>
                 <Menu
                   id="menu-appbar"
-                  anchorProfile={anchorProfile}
+                  anchorprofile={anchorProfile}
                   anchorOrigin={{
                     vertical: 'top',
                     horizontal: 'right',
