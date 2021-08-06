@@ -11,7 +11,7 @@ export default function Navbar() {
             Events near you!
           </div>
            <div data-target="mobile-demo" className="sidenav-trigger">
-            <i className="material-icons">menu</i>
+            {/* <i className="material-icons">menu</i> */}
           </div>
           <ul className="right hide-on-med-and-down">
             <Link to="/Signup">
@@ -40,7 +40,7 @@ export default function Navbar() {
         </div>
       </nav>
 
-      <ul className="sidenav" id="mobile-demo">
+      {/* <ul className="sidenav" id="mobile-demo">
         <Link to="Signup">
           <li>
             <p >Sign up</p>
@@ -61,7 +61,7 @@ export default function Navbar() {
           <p href="">Home</p>
         </li>
         </Link>
-      </ul> 
+      </ul>  */}
     </div>
   );
 }
