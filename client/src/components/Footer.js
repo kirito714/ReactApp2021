@@ -1,33 +1,42 @@
 import React from "react";
 import "./Footer.css";
+import { makeStyles } from '@material-ui/core/styles';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
 
-function Footer() {
+const useStyles = makeStyles({
+  root: {
+    width: 500,
+  },
+});
+
+export default function Footer() {
+  const classes = useStyles();
+  const [value, setValue] = React.useState(0);
+
   return (
-    <footer>
-      <nav className="nav-wrapper">
-      <a 
-            href="https://github.com/Cassiep1986"
-            target="_blank"
-            rel="noopener noreferrer"><img src = "/images/icons/github.png" alt="Github Icon" className = "icons"/>
-          </a>
-      <div className="container">
-          <div className="row">
-        <p className="col s12">Developer Repositories</p>
-        <div className="row center-align">
-        <p className="col">Cassie</p>
-        <p className="col">Paola</p>
-        <p className="col">Mike</p>
-        <p className="col">Joe</p>
-        <div className="row center-align">
-      <div className = "text-center"> Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-      </div>
-      </div>
-      </div>
-      </div>
+    // <Container maxWidth="sm">
+    <Typography component="div" style={{ backgroundColor: '#edc7b7', height: '100vh' }} >
+    <BottomNavigation
+      value={value}
+      onChange={(event, newValue) => {
+        setValue(newValue);
+      }}
+      showLabels
+      className={classes.root}
+      >
+      {/* <BottomNavigationAction label="Recents"  icon={<RestoreIcon />}/> */}
+      <BottomNavigationAction label="Recents" onClick={()=> window.open("https://github.com/kirito714/ReactApp2021")} icon={<img src = "http://placekitten.com/50/50"/>}/>
+      <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
+      <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
+    </BottomNavigation>
+    </Typography>
+//  </Container>
 
-      </nav>
-    </footer>
   );
 }
 
-export default Footer;
