@@ -6,7 +6,7 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 // import FavoriteIcon from '@material-ui/icons/Favorite';
 // import LocationOnIcon from '@material-ui/icons/LocationOn';
 // import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
+// import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles({
   root: {
@@ -16,7 +16,8 @@ const useStyles = makeStyles({
     left: "0px",
     right: "0px",
     backgroundColor: "#C8C7D9",
-    position: "fixed"
+    marginTop: "65px"
+
   },
 });
 
@@ -25,7 +26,7 @@ export default function Footer() {
   const [value, setValue] = React.useState(0);
 
   return (
-    <Container maxWidth="sm">
+<>
     {/* <Typography component="div"  style={{ backgroundColor: '#edc7b7', height: '100vh' }} > */}
     <BottomNavigation
       value={value}
@@ -42,8 +43,8 @@ export default function Footer() {
       <BottomNavigationAction label="Cassie Pacheco" icon={<img src="https://img.icons8.com/ios-glyphs/60/000000/spyro.png"/>} onClick={()=> window.open("https://github.com/Cassiep1986")}/>
     </BottomNavigation>
    {/* </Typography>  */}
-  </Container>
 
+</>
   );
 }
 
