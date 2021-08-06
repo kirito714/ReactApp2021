@@ -1,4 +1,4 @@
-export default function searchPage() {
+export default function SearchPage() {
     return (
         <>
          <div className="row">
