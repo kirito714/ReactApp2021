@@ -6,6 +6,8 @@ import Auth from "../utils/auth";
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import Button from '@material-ui/core/Button';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,6 +15,13 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
       width: '60ch',
     },
+  },
+  iconButton: {
+    padding: 10,
+  },
+  button: {
+    margin: theme.spacing(1),
+    marginLeft: 215
   },
 }));
 
@@ -103,7 +112,7 @@ export default function SignupPage() {
                   // type="password"
                   id="filled-password-input"
                   name="password"
-                  label="******"
+                  label="Password"
                   type="password"
                   autoComplete="current-password"
                   variant="filled"
@@ -112,13 +121,22 @@ export default function SignupPage() {
                   onChange={handleChange}
                 />
                 </div>
-                <button
+                {/* <button
                   className="btn btn-block btn-primary"
                   style={{ cursor: 'pointer' }}
                   type="submit"
                 >
                   Submit
-                </button>
+                </button> */}
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  className={classes.button}
+                  endIcon={<PersonAddIcon/>}
+                  >
+                  Submit
+                </Button>
               </form>
             )}
 
