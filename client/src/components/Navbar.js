@@ -12,6 +12,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import { Link } from "react-router-dom";
 
+
 import Auth from "../utils/auth";
 
 const useStyles = makeStyles((theme) => ({
@@ -122,15 +123,20 @@ export default function Navbar() {
                 open={openProfile}
                 onClose={handleCloseProfile}
               >
-                <Link to="/Login">
-                  <MenuItem onClick={handleCloseProfile}>Login</MenuItem>
-                </Link>
-                <Link to="/SignUp">
-                  <MenuItem onClick={handleCloseProfile}>SignUp</MenuItem>
-                </Link>
-                <Link to="/">
-                  <MenuItem onClick={(e) => Auth.logout()}>Logout</MenuItem>
-                </Link>
+                {!Auth.loggedIn() ? (
+                  <>
+                    <Link to="/Login">
+                      <MenuItem onClick={handleCloseProfile}>Login</MenuItem>
+                    </Link>
+                    <Link to="/SignUp">
+                      <MenuItem onClick={handleCloseProfile}>SignUp</MenuItem>
+                    </Link>
+                  </>
+                ) : (
+                  <Link to="/">
+                    <MenuItem onClick={(e) => Auth.logout()}>Logout</MenuItem>
+                  </Link>
+                )}
               </Menu>
             </div>
           )}
