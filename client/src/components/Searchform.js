@@ -111,7 +111,6 @@ export default function Searchform() {
 
   //USE MUTATION TO UPDATE DATABASE
   const [saveConcert, { error }] = useMutation(SAVE_CONCERT, {
-    //update the cache when mutation occurs
     update(cache, { data: { saveConcert } }) {
       try {
         const cacheData = cache.readQuery({
@@ -130,7 +129,7 @@ export default function Searchform() {
     },
   });
 
-  //SAVE BOOK TO MODEL/DATABASE
+  //SAVE Concert TO MODEL/DATABASE
   const handleSaveConcert = async (concertId) => {
     //look through the searchedConcerts useState and
     //find the concert that matches the concertId being passed through this function
