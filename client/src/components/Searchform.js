@@ -79,7 +79,8 @@ export default function Searchform() {
          try {
              //Use API function of searchConcertData in API.js to send GET resquest
              const response = await searchConcertData(searchInput);
- 
+                console.log(response)
+              
             //  if(!response.ok) {
             //      throw new Error("Something went wrong!");
             //  }
