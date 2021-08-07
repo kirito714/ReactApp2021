@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import {
   ApolloClient,
   InMemoryCache,
@@ -58,9 +58,13 @@ function App() {
           <Login/>
         </Route>
 
-        <Route exact path="/Profile">
-          <Profile />
-        </Route>
+        <Route path="/Profile" render={() => (
+          Auth.loggedIn() ? (
+            <Profile />
+          ) : (
+            <Redirect to="/Login" />
+          )
+        )}/>
 
         <Footer />
       </Router>
