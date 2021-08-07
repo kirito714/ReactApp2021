@@ -11,9 +11,9 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& .MuiTextField-root': {
+    "& .MuiTextField-root": {
       margin: theme.spacing(1),
-      width: '60ch',
+      width: "60ch",
     },
   },
   iconButton: {
@@ -34,7 +34,7 @@ export default function SignupPage() {
     password: "",
   });
   const [addUser, { error, data }] = useMutation(ADD_USER);
-  
+
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -60,50 +60,53 @@ export default function SignupPage() {
   };
   return (
     <>
-          <h1>Sign Up Page!</h1>
-          
-          <Container maxWidth="sm">
-          <h2>Sign Up</h2>
-            {data ? (
-              <p>
-                Success! You may now head{' '}
-                <Link to="/">back to the homepage.</Link>
-              </p>
-            ) : (
-              <form className={classes.root} noValidate autoComplete="off" onSubmit={handleFormSubmit}>
-                <div>
-                  <TextField
-                  // name="username"
-                  // type="text"
-                  id="filled-username-input"
-                  name="username"
-                  label="Your username"
-                  type="username"
-                  autoComplete="current-username"
-                  variant="filled"
-                  // value={formState.name}
-                  value={formState.name}
-                  onChange={handleChange}
-                >
-                  </TextField>
-                  </div>
+      <h1>Sign Up Page!</h1>
 
-                  <div>
-                <TextField    
-                  // className="form-input"
-                  // name="email"
-                  // type="email"
-                  id="filled-email-input"
-                  name="email"
-                  label="Your email"
-                  type="email"
-                  autoComplete="current-email"
-                  variant="filled"
-                  // value={formState.email}
-                  value={formState.name}
-                  onChange={handleChange}
-                />
-                </div>
+      <Container maxWidth="sm">
+        <h2>Sign Up</h2>
+        {data ? (
+          <p>
+            Success! You may now head <Link to="/">back to the homepage.</Link>
+          </p>
+        ) : (
+          <form
+            className={classes.root}
+            noValidate
+            autoComplete="off"
+            onSubmit={handleFormSubmit}
+          >
+            <div>
+              <TextField
+                // name="username"
+                // type="text"
+                id="filled-username-input"
+                name="username"
+                label="Your username"
+                type="username"
+                autoComplete="current-username"
+                variant="filled"
+                // value={formState.name}
+                value={formState.name}
+                onChange={handleChange}
+              ></TextField>
+            </div>
+
+            <div>
+              <TextField
+                // className="form-input"
+                // name="email"
+                // type="email"
+                id="filled-email-input"
+                name="email"
+                label="Your email"
+                type="email"
+                autoComplete="current-email"
+                variant="filled"
+                // value={formState.email}
+                value={formState.name}
+                onChange={handleChange}
+              />
+            </div>
 
                 <div>
                   <TextField
@@ -140,12 +143,8 @@ export default function SignupPage() {
               </form>
             )}
 
-            {error && (
-              <div>
-                {error.message}
-              </div>
-            )}
-            </Container>
+        {error && <div>{error.message}</div>}
+      </Container>
     </>
   );
 }
