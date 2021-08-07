@@ -8,11 +8,11 @@ import IconButton from '@material-ui/core/IconButton';
 import HomeIcon from '@material-ui/icons/Home';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Switch from '@material-ui/core/Switch';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { Link } from "react-router-dom";
+
+import Auth from '../utils/auth';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -129,7 +129,7 @@ export default function Navbar() {
                     <MenuItem onClick={handleCloseProfile}>SignUp</MenuItem>
                   </Link>
                   <Link to="/">
-                    <MenuItem onClick={handleCloseProfile}>Logout</MenuItem>
+                    <MenuItem onClick={(e) => Auth.logout()}>Logout</MenuItem>
                   </Link>
                 </Menu>
               </div>

@@ -20,6 +20,8 @@ function SearchConcertData (cityName) {
     axios.request(options).then(function (response) {
         console.log(response.data);
 
+        const data = response.data;
+
         const lat = data.coord.lat;
         const lon = data.coord.lon;
 
@@ -32,7 +34,8 @@ function SearchConcertData (cityName) {
               country: 'US',
               limit: '10',
               'location_around.origin': `${lat},${lon}`,
-              q: `${concertSearch}`,
+              // q: `${concertSearch}`,
+              q: "harry+styles",
               sort: 'start',
               'start.gt': '2021-08-04'
             },
@@ -42,6 +45,8 @@ function SearchConcertData (cityName) {
           axios.request(options).then(function (response) {
             //this is where we should get the array of objects with the concert information
             console.log(response.data);
+
+            return response.data
 
           }).catch(function (error) {
             console.error(error);

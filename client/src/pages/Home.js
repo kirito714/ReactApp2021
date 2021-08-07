@@ -21,7 +21,7 @@ export default function SearchPage() {
   return (
     <>
       <h1>Home Page!</h1>
-      <Searchform />
+      {/* <Searchform /> */}
 
       {/* <Container maxWidth="sm">
         <h1>Sign Up</h1>

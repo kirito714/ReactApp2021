@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import {
   ApolloClient,
   InMemoryCache,
@@ -9,13 +9,12 @@ import {
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Signup from "./pages/SignupPage";
-// import Container from "./components/Container";
-import Search from "./pages/SearchPage";
 import HomePage from "./pages/Home";
 import Login from "./pages/Login";
 import Profile from "./pages/ProfilePage";
-
 import { setContext } from "@apollo/client/link/context";
+
+import Auth from "./utils/auth";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -51,12 +50,10 @@ function App() {
           <HomePage />
         </Route>
 
-        {/* <  /> */}
-        {/* <Signupform /> */}
-
         <Route exact path="/Signup">
           <Signup />
         </Route>
+
         <Route exact path="/Login">
           <Login/>
         </Route>
@@ -64,13 +61,15 @@ function App() {
           <Profile/>
         </Route>
 
-        {/* <Route exact path="/Search">
-        {" "}
-        <Signup />
-      </Route> */}
-        {/*<Route  exact path="/" component={} /> */}
+        <Route path="/Profile" render={() => (
+          Auth.loggedIn() ? (
+            <Profile />
+          ) : (
+            <Redirect to="/Login" />
+          )
+        )}/>
+
         <Footer />
-        {/* <script */}
       </Router>
     </ApolloProvider>
   );

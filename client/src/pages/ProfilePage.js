@@ -1,21 +1,36 @@
-import React, { useState, useEffect } from "react";
-import SearchConcerts from "../components/SearchConcert";
+import React, { useState, useEffect } from 'react';
+import Searchform from "../components/Searchform";
 
-// import Auth from "../utils/auth";
-// import { saveConcertIds } from "../utils/localStorage";
-// import { SearchConcertData } from "../utils/API";
+import Auth from '../utils/auth';
 
-// import { useMutation, useQuery } from "@apollo/client";
-// import { GET_ME } from "../utils/queries";
-// import { SAVE_CONCERT } from "../utils/mutations";
+import { useQuery } from '@apollo/client';
+import { GET_ME } from "../utils/queries";
 
-export default function ProfilePage() {
-  return (
-    <>
-      <h1>Profile Landing Page!</h1>
-      <SearchConcerts />
-    </>
-  );
+
+//FUNCTION TO CREATE SAVED CONCERTS CARDS ..................
+const Profile = () => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+    
+    if (!token) {
+      return false;
+    }
+
+    //This will query our Database for our user information including,
+    //the saved concerts
+    //To access this data in JSX for the cards, it will be {userData.me.savedConcerts}
+    // const { loading, data } = useQuery(GET_ME);
+    // const userData = data;
+
+    //JSX with cards and info for the concert
+    return (
+        <>
+        <h1> This is the profile! </h1>
+        <Searchform />
+        </>
+    );
+
 }
 
 
+// export default SearchConcerts;
+export default Profile;
