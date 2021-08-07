@@ -9,6 +9,11 @@ import { GET_ME } from "../utils/queries";
 
 //FUNCTION TO CREATE SAVED CONCERTS CARDS ..................
 const Profile = () => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+    
+    if (!token) {
+      return false;
+    }
 
     //This will query our Database for our user information including,
     //the saved concerts
