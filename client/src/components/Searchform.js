@@ -99,7 +99,6 @@ export default function Searchform() {
         venue: concert.entities[0].name,
         date: concert.start,
       }));
-      console.log(concertInfo);
 
       //updating useState
       setSearchedConcerts(concertData);
@@ -247,16 +246,16 @@ export default function Searchform() {
                   <Button
                     size="small"
                     color="primary"
-                    disabled={savedConcertIds.some(
+                    disabled={savedConcertIds?.some(
                       (savedConcertId) => savedConcertId === concert.concertId
                     )}
-                    onClick={handleSaveConcert(concert.concertId)}
+                    onClick={() => handleSaveConcert(concert.concertId)}
                   >
-                    {savedConcertIds.some(
+                    {savedConcertIds?.some(
                       (savedConcertId) => savedConcertId === concert.concertId
                     )
-                      ? "Save event!"
-                      : "Event has already been saved"}
+                      ? "Event has already been saved"
+                      : "Save event!"}
                   </Button>
                 </CardActions>
               </Card>
