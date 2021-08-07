@@ -57,6 +57,9 @@ function App() {
         <Route exact path="/Login">
           <Login/>
         </Route>
+        <Route>
+          <Profile/>
+        </Route>
 
         <Route path="/Profile" render={() => (
           Auth.loggedIn() ? (

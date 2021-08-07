@@ -12,9 +12,9 @@ import Auth from "../utils/auth";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& .MuiTextField-root': {
+    "& .MuiTextField-root": {
       margin: theme.spacing(1),
-      width: '60ch',
+      width: "60ch",
     },
   },
   iconButton: {
