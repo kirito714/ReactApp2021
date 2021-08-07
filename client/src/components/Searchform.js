@@ -55,6 +55,7 @@ export default function Searchform() {
      const [searchedConcerts, setSearchedConcerts] = useState([]);
      // create state to hold our search field data (from the input field in the search form)
      const [searchInput, setSearchInput] = useState("");
+     console.log(searchInput);
  
      // create a state to hold the saved concertId to use for local storage
      // getSavedConcertIds is a function in localstorage.js to get the ids in local storage
@@ -79,9 +80,9 @@ export default function Searchform() {
              //Use API function of searchConcertData in API.js to send GET resquest
              const response = await searchConcertData(searchInput);
  
-             if(!response.ok) {
-                 throw new Error("Something went wrong!");
-             }
+            //  if(!response.ok) {
+            //      throw new Error("Something went wrong!");
+            //  }
  
              //JSON the repsonse for searchConcertData
              const { concertInfo } = await response.json()
@@ -169,8 +170,8 @@ export default function Searchform() {
     return(
         <>
         {/* SEARCH BAR */}
+        <Paper className={classes.paper}>
         <h1>Search for an Event Near You</h1>
-        <Paper component="form" className={classes.paper}>
             <Container maxWidth="sm">
                 <form className={classes.root} noValidate autoComplete="off" onSubmit={handleFormSubmit}>
                 <div>
@@ -185,7 +186,7 @@ export default function Searchform() {
                     >
                     </TextField>
                 </div>
-                <div>
+                {/* <div>
                     <TextField
                     id="filled-artist-input"
                     label="Artist"
@@ -194,13 +195,14 @@ export default function Searchform() {
                     variant="filled"
                     >
                     </TextField>
-                </div>
+                </div> */}
                 <div>
                     <Button
                         variant="contained"
                         color="primary"
                         className={classes.button}
                         endIcon={<Icon>send</Icon>}
+                        type="submit"
                     >
                         Search
                     </Button>
