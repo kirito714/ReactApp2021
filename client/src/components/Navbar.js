@@ -121,16 +121,16 @@ export default function Navbar() {
                   }}
                   open={openProfile}
                   onClose={handleCloseProfile}
-                >
+                >  
                   <Link to="/Login">
-                    <MenuItem onClick={handleCloseProfile}>Login</MenuItem>
+                    <MenuItem  onClick={handleCloseProfile}>Login</MenuItem>
                   </Link>
                   <Link to="/SignUp">
                     <MenuItem onClick={handleCloseProfile}>SignUp</MenuItem>
                   </Link>
-                  <Link to="/">
-                    <MenuItem onClick={(e) => Auth.logout()}>Logout</MenuItem>
-                  </Link>
+                  <Link to="/" render{()=>(Auth.loggedId() ? ())}/>
+                  //   <MenuItem onClick={(e) => Auth.logout()}>Logout</MenuItem>
+                  // </Link>
                 </Menu>
               </div>
             )}

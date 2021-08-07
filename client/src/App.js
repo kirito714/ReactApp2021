@@ -57,9 +57,7 @@ function App() {
         <Route exact path="/Login">
           <Login/>
         </Route>
-        <Route>
-          <Profile/>
-        </Route>
+       
 
         <Route path="/Profile" render={() => (
           Auth.loggedIn() ? (
@@ -69,7 +67,7 @@ function App() {
           )
         )}/>
 
-        <Footer />
+        {/* <Footer /> */}
       </Router>
     </ApolloProvider>
   );
