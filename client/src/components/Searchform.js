@@ -15,6 +15,7 @@ import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
+import "./searchbar.css"
 
 //CARDS THAT CONTAIN RESULTS FROM SEARCH
 import Card from "@material-ui/core/Card";
@@ -165,7 +166,8 @@ export default function Searchform() {
   return (
     <>
       {/* SEARCH BAR */}
-      <Paper className={classes.paper}>
+      <div className="search-container">
+      <Paper className="{classes.paper} search-title">
         <h1>Search for an Event Near You</h1>
         <Container maxWidth="sm">
           <form
@@ -209,7 +211,7 @@ export default function Searchform() {
           </form>
         </Container>
       </Paper>
-
+      </div>
       {/* CARDS */}
       <div className="event-container">
         <h2>

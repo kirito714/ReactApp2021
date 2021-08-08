@@ -1,6 +1,6 @@
 const axios = require("axios").default;
 const fetch = require("node-fetch");
-
+// require('dotenv').config();
 // IMPORT DATA FROM USER INPUT
 // cityName = this is what the user types into input field to search by city
 

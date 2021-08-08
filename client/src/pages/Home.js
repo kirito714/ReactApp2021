@@ -22,7 +22,7 @@ export default function SearchPage() {
   return (
     <>
     <div className = "home-page">
-      <h1>Home Page!</h1>
+      
       <h1>welcome to Events near you!</h1>
       <h2>With our application you will never miss out<br/> on the fun events going on in your area! </h2>
       <h4>PLease <Link to="/Login">Login</Link> or <Link to="/Signup">Signup</Link> to find events</h4>
