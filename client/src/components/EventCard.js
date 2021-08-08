@@ -23,7 +23,8 @@ const useStyles = makeStyles({
   },
   card: {
     maxWidth: 345,
-    minWidth: 300
+    minWidth: 300,
+    
   },
 });
 
