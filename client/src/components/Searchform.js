@@ -237,14 +237,14 @@ export default function Searchform() {
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                      {concert.venue}
+                      {concert.title}
                     </Typography>
                     <Typography
                       variant="body2"
                       color="textSecondary"
                       component="p"
                     >
-                      {concert.description}
+                      {concert.venue}
                     </Typography>
                   </CardContent>
                 </CardActionArea>
