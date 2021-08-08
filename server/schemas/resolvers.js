@@ -39,19 +39,6 @@ const resolvers = {
 
       return { token, user };
     },
-    // removeConcert by concertId using the findOneAndDelete() then await and update
-    removeConcert: async (parent, { concertId }, context) => {
-      if (context.user) {
-        const concert = await concertSchema.findOneAndDelete({
-          _id: concertId,
-        });
-
-        await User.findOneAndUpdate({ _id: context.user._id });
-
-        return concert;
-      }
-      throw new AuthenticationError("You need to be logged in!");
-    },
     saveConcert: async (parent, { title, description, venue, date }, context) => {
       if (context.user) {
         //add the concert to saved concert
@@ -70,6 +57,24 @@ const resolvers = {
       }
 
       throw new AuthenticationError("You need to be logged in to save a Concert");
+    },
+     // removeConcert by concertId using the findOneAndDelete() then await and update
+     removeConcert: async (parent, { concertId }, context) => {
+      if (context.user) {
+        const savedConcertArray = await User.findOneAndDelete(
+          {_id: context.user._id,},
+          {
+            $pull: {
+              saveConcert: {concertId}
+            }
+          },
+          { new: true, runValidators: true }
+
+          );
+          return savedConcertArray;
+      }
+
+      throw new AuthenticationError("Could not delete event");
     },
   },
 };
