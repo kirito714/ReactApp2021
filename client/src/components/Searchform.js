@@ -79,7 +79,6 @@ export default function Searchform() {
     try {
       //Use API function of searchConcertData in API.js to send GET resquest
       const response = await SearchConcertData(searchInput);
-      
 
       //   if (!response.ok) {
       //     throw new Error("Something went wrong!");
@@ -87,21 +86,20 @@ export default function Searchform() {
 
       //JSON the repsonse for searchConcertData
       const concertInfo = await response.results;
-      
+
       //Mapping over data we get back from API and
       //getting each piece of info for our model
-      
-      console.log(response.results[0].id);
+
+      console.log(response.results);
       const concertData = concertInfo.map((concert) => ({
         concertId: concert.id,
         title: concert.title,
         description: concert.description,
         venue: concert.entities[0].name,
         date: concert.start,
-      }
-      )
-      );
-      
+      }));
+      console.log(concertData);
+
       //updating useState
       setSearchedConcerts(concertData);
       // clearing searchInput
@@ -122,7 +120,7 @@ export default function Searchform() {
         if (cacheData) {
           cache.writeQuery({
             query: GET_ME,
-            data: { savedBooks: [...cacheData.savedConcerts, saveConcert] },
+            data: { savedConcerts: [...cacheData.savedConcerts, saveConcert] },
           });
         }
       } catch (err) {
@@ -135,8 +133,9 @@ export default function Searchform() {
   const handleSaveConcert = async (concertId) => {
     //look through the searchedConcerts useState and
     //find the concert that matches the concertId being passed through this function
+    console.log(concertId)
     const concertToSave = searchedConcerts.find(
-      (concert) => concert.id === concertId
+      (concert) => concert.concertId === concertId
     );
 
     // get token from Auth.js

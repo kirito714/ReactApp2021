@@ -11,9 +11,10 @@ const typeDefs = gql`
   }
 
   type concertSchema {
-    _id: ID
+    concertId: String
     title: String
     description: String
+    date:String
     venue: String
   }
 
