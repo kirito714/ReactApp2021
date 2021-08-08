@@ -35,10 +35,10 @@ export const SAVE_CONCERT = gql`
 `;
 
 export const REMOVE_CONCERT = gql`
-    mutation removeConcert($bookId: String!) {
-        removeConcert(bookId: $bookId) {
+    mutation removeConcert($concertId: String!) {
+        removeConcert(concertId: $concertId) {
             saveConcert{
-                bookId
+                concertId
             }
         }
     }
