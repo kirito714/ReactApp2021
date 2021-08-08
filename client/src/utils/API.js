@@ -30,25 +30,40 @@ async function SearchConcertData(city) {
 
   const url = "https://api.predicthq.com/v1/events";
 
-  const options2 = {
-    method: "GET",
-    qs: {
-      "brand_unsafe.exclude": "true",
-      category: "concerts",
-      country: "US",
-      limit: "10",
-      "location_around.origin": `${lat},${lon}`,
-      q: "harry+styles",
-      sort: "start",
-      "start.gt": "2021-08-04",
-    },
-    headers: {
-      Authorization: "Bearer UCPQh7iuieqQpZWV4NOqoJPMhKvavlBNoAfad84K",
-    },
-  };
+  // const options2 = {
+  //   method: "GET",
+  //   qs: {
+  //     "brand_unsafe.exclude": "true",
+  //     category: "concerts",
+  //     country: "US",
+  //     limit: "10",
+  //     "location_around.origin": `${lat},${lon}`,
+  //     q: "harry+styles",
+  //     sort: "start",
+  //     "start.gt": "2021-08-04",
+  //   },
+  //   headers: {
+  //     Authorization: "Bearer UCPQh7iuieqQpZWV4NOqoJPMhKvavlBNoAfad84K",
+  //   },
+  // };
+  
+  //   const res = await fetch(url, options2);
+  //   return res.json();
+  
+  const params = {
+    category: "concerts",
+    country: "US",
+    limit: "10",
+    "location_around.origin": `${lat},${lon}`,
+    sort: "start",
+    "start.gt": "2021-08-04",
+   headers: {
+    Authorization: "Bearer UCPQh7iuieqQpZWV4NOqoJPMhKvavlBNoAfad84K",
+  },
+};
 
-  const res = await fetch(url, options2);
-  return res.json();
+
+
 }
 
 export default SearchConcertData;
