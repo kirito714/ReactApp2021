@@ -28,7 +28,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function MediaCard() {
+export default function EventCard() {
   const classes = useStyles();
 
   const { loading, data } = useQuery(GET_ME);
@@ -38,24 +38,28 @@ export default function MediaCard() {
   
 
   const [removeConcert, { error }] = useMutation (REMOVE_CONCERT
-    // , {
-    // update(cache, {data: {removeConcert} }) {
-    //   try{
-    //     const cacheData = cache.readQuery({
-    //       query: GET_ME
-    //     });
+  //   , {
+  //   update(cache, {data: {removeConcert} }) {
+  //     try{
+  //       const cacheData = cache.readQuery({
+  //         query: GET_ME
+  //       });
 
-    //     if (cacheData) {
-    //       cache.writeQuery({
-    //         query: GET_ME,
-    //         data:{ savedConcert: [...cacheData.savedConcert]}
-    //       });
-    //     }
+  //       const newData = {
+  //         saveConcert: cacheData.saveConcert.filter((c) => c.concertId !== concertId)
+  //       }
 
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // }
+  //       if (cacheData) {
+  //         cache.writeQuery({
+  //           query: GET_ME,
+  //           data: newData
+  //         });
+  //       }
+
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   }
   // }
   );
 
@@ -93,7 +97,7 @@ export default function MediaCard() {
             <CardActionArea>
               <CardMedia
                 className={classes.media}
-                image="https://placekitten.com/345/140"
+                image="https://source.unsplash.com/random"
                 title={concert.title}
                 />
               <CardContent>
