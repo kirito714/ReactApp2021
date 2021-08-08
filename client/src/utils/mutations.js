@@ -33,3 +33,15 @@ export const SAVE_CONCERT = gql`
        }
    }
 `;
+
+export const REMOVE_CONCERT = gql`
+    mutation removeConcert($bookId: String!) {
+        removeConcert(bookId: bookId) {
+            saveConcert{
+                bookId
+            }
+        }
+    }
+
+
+`;

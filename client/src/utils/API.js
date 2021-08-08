@@ -38,7 +38,7 @@ async function SearchConcertData(city) {
       country: "US",
       limit: "10",
       "location_around.origin": `${lat},${lon}`,
-      q: "harry styles",
+      q: "harry+styles",
       sort: "start",
       "start.gt": "2021-08-04",
     },

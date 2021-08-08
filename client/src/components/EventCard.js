@@ -7,37 +7,104 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import "./eventcard.css"
+
+import { useQuery, useMutation } from "@apollo/client";
+import { GET_ME } from "../utils/queries";
+import { REMOVE_CONCERT } from '../utils/mutations';
+
+const useStyles = makeStyles({
+  root: {
+    maxWidth: 345,
+  },
+  media: {
+    height: 140,
+  },
+  card: {
+    maxWidth: 345,
+    minWidth: 300
+  },
+});
+
 export default function MediaCard() {
-    const classes = useStyles();
+  const classes = useStyles();
+
+  const { loading, data } = useQuery(GET_ME);
+  const userData = data;
+  console.log(userData);
+
+  const [removeConcert, { error }] = useMutation (REMOVE_CONCERT, {
+    update(cache, {data: {removeConcert} }) {
+      try{
+        const cacheData = cache.readQuery({
+          query: GET_ME
+        });
+
+        if (cacheData) {
+          cache.writeQuery({
+            query: GET_ME,
+            data:{ savedConcert: [...cacheData.savedConcert]}
+          });
+        }
+
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  });
+
+  const handleRemoveConcert = async (concertId) => {
+
+    console.log(concertId);
+
+    // // get token from Auth.js
+    // const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    // if (!token) {
+    //   return false;
+    // }
+
+  }
+
+
+  if(loading) {
+    return <h2> LOADING... </h2>
+  }
     
-    return (
-      <>
-      <div className="event-container">
-      <Card className={classes.root}>
-        <CardActionArea>
-          <CardMedia
-            className={classes.media}
-            image="https://placekitten.com/345/140"
-            title="Contemplative Reptile"
-            />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              Event1
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              this event is blah blah blah the performer is blah 
-              the event time is blah:blah and the date is blah, blah 
-              and the event is located at blah 
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button size="small" color="primary">
-            Save event!
-          </Button>
-          
-        </CardActions>
-      </Card>
-      </div>
-      </>
-      )};
+  return (
+    <>
+    <div className="event-container">
+      {userData.me.saveConcert.map((concert) => {
+        return (
+          <div className="card" key={concert.concertId} >
+          <Card className={classes.card}>
+            <CardActionArea>
+              <CardMedia
+                className={classes.media}
+                image="https://placekitten.com/345/140"
+                title={concert.title}
+                />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="h2">
+                  {concert.title}
+                </Typography>
+                <Typography variant="body2" color="textSecondary" component="p">
+                 {concert.description}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+            <CardActions>
+              <Button 
+              size="small" 
+              color="primary"
+              type="button">
+                Delete Event
+              </Button>
+            </CardActions>
+          </Card>
+          </div>
+        )
+      })}
+    </div>
+    </>
+  )};

@@ -57,7 +57,6 @@ export default function Searchform() {
   const [searchedConcerts, setSearchedConcerts] = useState([]);
   // create state to hold our search field data (from the input field in the search form)
   const [searchInput, setSearchInput] = useState("");
-  console.log(searchInput);
 
   // create a state to hold the saved concertId to use for local storage
   // getSavedConcertIds is a function in localstorage.js to get the ids in local storage
@@ -161,6 +160,8 @@ export default function Searchform() {
     } catch (err) {
       console.error(` This is the catch block for handleSaveConcert`, err);
     }
+
+    setSearchedConcerts([]);
   };
 
   const classes = useStyles();
@@ -217,17 +218,17 @@ export default function Searchform() {
       {/* CARDS */}
       <div className="event-container">
         <h2>
-          {searchedConcerts.length
+          {searchedConcerts.length > 1
             ? `Viewing ${searchedConcerts.length} results:`
-            : "Search for a concert to see your options"}
+            : "Search to find upcoming events"}
         </h2>
        </div>
         <div className="card-container">
         {/* <Container maxWidth="sm"> */}
           {searchedConcerts.map((concert) => {
             return (
-              <div className="card">
-              <Card className={classes.card} key={concert.concertId}>
+              <div className="card" key={concert.concertId}>
+              <Card className={classes.card}>
                 <CardActionArea>
                   <CardMedia
                     className={classes.media}
