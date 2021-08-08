@@ -156,7 +156,7 @@ export default function Searchform() {
       // which will save in local storage
       setSavedConcertIds([...savedConcertIds, concertToSave.concertId]);
     } catch (err) {
-      console.error(` This is the catch block for handleSaveConcert ${err}`);
+      console.error(` This is the catch block for handleSaveConcert`, err);
     }
   };
 
