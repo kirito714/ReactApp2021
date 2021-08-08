@@ -7,7 +7,7 @@ const typeDefs = gql`
     email: String
     password: String
     concertCount: Int
-    savedConcert: [concertSchema]
+    saveConcert: [concertSchema]
   }
 
   type concertSchema {
@@ -29,7 +29,7 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    savedConcert(title: String!, description:String!, venue: String!, place:String!, date: String!): User
+    saveConcert(title: String!, description:String!, venue: String!, date: String!): User
     removeConcert(thoughtId: ID!): User
   }
 `;

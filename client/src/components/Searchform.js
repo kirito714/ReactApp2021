@@ -79,7 +79,7 @@ export default function Searchform() {
     try {
       //Use API function of searchConcertData in API.js to send GET resquest
       const response = await SearchConcertData(searchInput);
-      console.log(response);
+      
 
       //   if (!response.ok) {
       //     throw new Error("Something went wrong!");
@@ -87,19 +87,21 @@ export default function Searchform() {
 
       //JSON the repsonse for searchConcertData
       const concertInfo = await response.results;
-      console.log(response.results);
-
+      
       //Mapping over data we get back from API and
       //getting each piece of info for our model
+      
+      console.log(response.results[0].id);
       const concertData = concertInfo.map((concert) => ({
         concertId: concert.id,
         title: concert.title,
         description: concert.description,
-        place: concert.timezone,
         venue: concert.entities[0].name,
         date: concert.start,
-      }));
-
+      }
+      )
+      );
+      
       //updating useState
       setSearchedConcerts(concertData);
       // clearing searchInput
@@ -134,7 +136,7 @@ export default function Searchform() {
     //look through the searchedConcerts useState and
     //find the concert that matches the concertId being passed through this function
     const concertToSave = searchedConcerts.find(
-      (concert) => concert.concertId === concertId
+      (concert) => concert.id === concertId
     );
 
     // get token from Auth.js
@@ -230,7 +232,6 @@ export default function Searchform() {
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
                       {concert.venue}
-                      {concert.place}
                     </Typography>
                     <Typography
                       variant="body2"
