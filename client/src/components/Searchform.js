@@ -44,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
     maxWidth: 345,
+    minWidth: 300
   },
   media: {
     height: 140,
@@ -224,6 +225,7 @@ export default function Searchform() {
         {/* <Container maxWidth="sm"> */}
           {searchedConcerts.map((concert) => {
             return (
+              <div className="card">
               <Card className={classes.card} key={concert.concertId}>
                 <CardActionArea>
                   <CardMedia
@@ -262,6 +264,7 @@ export default function Searchform() {
                   </Button>
                 </CardActions>
               </Card>
+        </div>
             );
           })}
         {/* </Container> */}
