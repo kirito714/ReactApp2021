@@ -1,4 +1,5 @@
 import React from 'react';
+import Auth from "../utils/auth";
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -33,36 +34,44 @@ export default function MediaCard() {
   const userData = data;
   console.log(userData);
 
-  const [removeConcert, { error }] = useMutation (REMOVE_CONCERT, {
-    update(cache, {data: {removeConcert} }) {
-      try{
-        const cacheData = cache.readQuery({
-          query: GET_ME
-        });
+  const [removeConcert, { error }] = useMutation (REMOVE_CONCERT
+    // , {
+    // update(cache, {data: {removeConcert} }) {
+    //   try{
+    //     const cacheData = cache.readQuery({
+    //       query: GET_ME
+    //     });
 
-        if (cacheData) {
-          cache.writeQuery({
-            query: GET_ME,
-            data:{ savedConcert: [...cacheData.savedConcert]}
-          });
-        }
+    //     if (cacheData) {
+    //       cache.writeQuery({
+    //         query: GET_ME,
+    //         data:{ savedConcert: [...cacheData.savedConcert]}
+    //       });
+    //     }
 
-      } catch (err) {
-        console.log(err);
-      }
-    }
-  });
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // }
+  // }
+  );
 
   const handleRemoveConcert = async (concertId) => {
 
     console.log(concertId);
 
-    // // get token from Auth.js
-    // const token = Auth.loggedIn() ? Auth.getToken() : null;
+    // get token from Auth.js
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-    // if (!token) {
-    //   return false;
-    // }
+    if (!token) {
+      return false;
+    }
+
+    const {data} = await removeConcert({
+      variables: {
+        concertId,
+      }
+    })
 
   }
 
@@ -97,7 +106,8 @@ export default function MediaCard() {
               <Button 
               size="small" 
               color="primary"
-              type="button">
+              type="button"
+              onClick={() => handleRemoveConcert(concert.concertId)}>
                 Delete Event
               </Button>
             </CardActions>
