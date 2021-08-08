@@ -133,9 +133,14 @@ export default function Navbar() {
                     </Link>
                   </>
                 ) : (
+                  <>
+                    <Link to="/Profile">
+                      <MenuItem onClick={handleCloseProfile}>Profile</MenuItem>
+                    </Link>
                   <Link to="/">
                     <MenuItem onClick={(e) => Auth.logout()}>Logout</MenuItem>
                   </Link>
+                  </>
                 )}
               </Menu>
             </div>
