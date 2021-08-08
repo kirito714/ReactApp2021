@@ -219,7 +219,9 @@ export default function Searchform() {
             ? `Viewing ${searchedConcerts.length} results:`
             : "Search for a concert to see your options"}
         </h2>
-        <Container maxWidth="sm">
+       </div>
+        <div className="card-container">
+        {/* <Container maxWidth="sm"> */}
           {searchedConcerts.map((concert) => {
             return (
               <Card className={classes.card} key={concert.concertId}>
@@ -262,8 +264,8 @@ export default function Searchform() {
               </Card>
             );
           })}
-        </Container>
-      </div>
+        {/* </Container> */}
+        </div>
     </>
   );
 }

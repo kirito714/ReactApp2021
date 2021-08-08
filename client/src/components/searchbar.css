@@ -14,3 +14,10 @@ h2{
     align-items: center;
     margin-top: 20px;
 }
+.card-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+
+}
