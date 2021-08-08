@@ -3,11 +3,9 @@ const { Schema } = require("mongoose");
 const concertSchema = new Schema({
   concertId: {
     type: String,
-    required: true,
   },
   title: {
     type: String,
-    required: true,
   },
   description: {
     type: String,
@@ -15,9 +13,7 @@ const concertSchema = new Schema({
   venue: {
     type: String,
   },
-  place: {
-    type: String,
-  },
+
   date: {
     type: String,
   },

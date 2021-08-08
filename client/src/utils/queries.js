@@ -3,11 +3,11 @@ import { gql } from '@apollo/client';
 export const GET_ME = gql`
     query get_me {
         me {
-            savedConcert {
+            saveConcert {
                 title
                 description
                 venue
-                place
+              
                 date
             }
             

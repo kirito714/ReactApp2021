@@ -21,7 +21,7 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  savedConcert: [concertSchema],
+  saveConcert: [concertSchema],
 },
 // set this to use virtual below
 {
@@ -48,7 +48,7 @@ userSchema.methods.isCorrectPassword = async function (password) {
 
 // when we query a user, we'll also get another field called `concertCount` with the number of saved books we have
 userSchema.virtual("concertCount").get(function () {
-  return this.savedConcert.length;
+  return this.saveConcert.length;
 });
 
 const User = model("User", userSchema);
