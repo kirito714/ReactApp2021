@@ -39,7 +39,7 @@ const resolvers = {
 
       return { token, user };
     },
-    saveConcert: async (parent, { title, description, venue, date }, context) => {
+    saveConcert: async (parent, { concertId, title, description, venue, date }, context) => {
       if (context.user) {
         //add the concert to saved concert
         //then push the concert id into our savedConcert
@@ -47,7 +47,7 @@ const resolvers = {
           { _id: context.user._id },
           {
             $addToSet: {
-              saveConcert: { title, description, venue, date},
+              saveConcert: { concertId, title, description, venue, date },
             },
           },
           { new: true, runValidators: true }
@@ -61,7 +61,7 @@ const resolvers = {
      // removeConcert by concertId using the findOneAndDelete() then await and update
      removeConcert: async (parent, { concertId }, context) => {
       if (context.user) {
-        const savedConcertArray = await User.findOneAndDelete(
+        const savedConcertArray = await User.findOneAndUpdate(
           {_id: context.user._id,},
           {
             $pull: {
