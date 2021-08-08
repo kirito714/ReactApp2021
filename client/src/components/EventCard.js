@@ -34,6 +34,8 @@ export default function MediaCard() {
   const userData = data;
   console.log(userData);
 
+  
+
   const [removeConcert, { error }] = useMutation (REMOVE_CONCERT
     // , {
     // update(cache, {data: {removeConcert} }) {
@@ -67,11 +69,11 @@ export default function MediaCard() {
       return false;
     }
 
-    const {data} = await removeConcert({
+    const { data } = await removeConcert({
       variables: {
         concertId,
-      }
-    })
+      },
+    });
 
   }
 

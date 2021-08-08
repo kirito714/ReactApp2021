@@ -91,12 +91,13 @@ export default function Searchform() {
       //Mapping over data we get back from API and
       //getting each piece of info for our model
 
-      console.log(response.results);
+      console.log(concertInfo);
+
       const concertData = concertInfo.map((concert) => ({
         concertId: concert.id,
         title: concert.title,
         description: concert.description,
-        venue: concert.entities[0].name,
+        venue: concert.entities.length > 0 ? concert.entities[0].name : "no venue",
         date: concert.start,
       }));
       console.log(concertData);
@@ -138,6 +139,8 @@ export default function Searchform() {
     const concertToSave = searchedConcerts.find(
       (concert) => concert.concertId === concertId
     );
+
+    console.log(`This is the concertToSave ${concertToSave}`)
 
     // get token from Auth.js
     const token = Auth.loggedIn() ? Auth.getToken() : null;
