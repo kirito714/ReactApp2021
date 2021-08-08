@@ -97,7 +97,7 @@ export default function Searchform() {
         concertId: concert.id,
         title: concert.title,
         description: concert.description,
-        venue: concert.entities[0].name || "",
+        venue: concert.entities.length > 0 ? concert.entities[0].name : "no venue",
         date: concert.start,
       }));
       console.log(concertData);
