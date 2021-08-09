@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link , Switch} from "react-router-dom";
 
 import Auth from "../utils/auth";
 import { getSavedConcertIds, saveConcertIds } from "../utils/localStorage";
@@ -7,6 +8,7 @@ import SearchConcertData from "../utils/API";
 import { useMutation } from "@apollo/client";
 import { SAVE_CONCERT } from "../utils/mutations";
 import { GET_ME } from "../utils/queries";
+import SavedCerts from "./SavedCerts";
 
 //SEARCH BAR
 import { makeStyles } from "@material-ui/core/styles";
@@ -15,7 +17,7 @@ import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
-import "./searchbar.css"
+import "./searchbar.css";
 
 //CARDS THAT CONTAIN RESULTS FROM SEARCH
 import Card from "@material-ui/core/Card";
@@ -45,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
   card: {
     width: 250,
     height: 350,
-    margin: "5px"
+    margin: "5px",
   },
   media: {
     height: 140,
@@ -61,7 +63,9 @@ export default function Searchform() {
 
   // create a state to hold the saved concertId to use for local storage
   // getSavedConcertIds is a function in localstorage.js to get the ids in local storage
-  const [savedConcertIds, setSavedConcertIds] = useState(getSavedConcertIds());
+  const [savedConcertIds, setSavedConcertIds] = useState(
+    getSavedConcertIds([])
+  );
 
   // Using the useEffect hook to save saveConcertIds list to localStorage
   useEffect(() => {
@@ -82,9 +86,9 @@ export default function Searchform() {
       //Use API function of searchConcertData in API.js to send GET resquest
       const response = await SearchConcertData(searchInput);
 
-      //   if (!response.ok) {
-      //     throw new Error("Something went wrong!");
-      //   }
+      // if (!response.ok) {
+      //   throw new Error("Something went wrong!");
+      // }
 
       //JSON the repsonse for searchConcertData
       const concertInfo = await response.results;
@@ -98,7 +102,8 @@ export default function Searchform() {
         concertId: concert.id,
         title: concert.title,
         description: concert.description,
-        venue: concert.entities.length > 0 ? concert.entities[0].name : "no venue",
+        venue:
+          concert.entities.length > 0 ? concert.entities[0].name : "no venue",
         date: concert.start,
       }));
       console.log(concertData);
@@ -136,12 +141,12 @@ export default function Searchform() {
   const handleSaveConcert = async (concertId) => {
     //look through the searchedConcerts useState and
     //find the concert that matches the concertId being passed through this function
-    console.log(concertId)
+
     const concertToSave = searchedConcerts.find(
       (concert) => concert.concertId === concertId
     );
 
-    console.log(`This is the concertToSave ${concertToSave}`)
+    console.log(`This is the concertToSave ${concertToSave}`);
 
     // get token from Auth.js
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -165,36 +170,37 @@ export default function Searchform() {
       console.error(` This is the catch block for handleSaveConcert`, err);
     }
 
-    setSearchedConcerts([]);
+    // setSearchedConcerts([]);
   };
 
   const classes = useStyles();
 
   return (
     <>
+  <Button onClick={()=> window.location.assign('/Profile')}>Your Saved Concerts Here!!!</Button>
       {/* SEARCH BAR */}
       <div className="search-container">
-      <Paper className="{classes.paper} search-title">
-        <h1>Search for an Event Near You</h1>
-        <Container maxWidth="sm">
-          <form
-            className={classes.root}
-            noValidate
-            autoComplete="off"
-            onSubmit={handleFormSubmit}
-          >
-            <div>
-              <TextField
-                id="filled-city-input"
-                label="City"
-                type="city"
-                autoComplete="current-city"
-                variant="filled"
-                value={searchInput}
-                onChange={(e) => setSearchInput(e.target.value)}
-              ></TextField>
-            </div>
-            {/* <div>
+        <Paper className="{classes.paper} search-title">
+          <h1>Search for an Event Near You</h1>
+          <Container maxWidth="sm">
+            <form
+              className={classes.root}
+              noValidate
+              autoComplete="off"
+              onSubmit={handleFormSubmit}
+            >
+              <div>
+                <TextField
+                  id="filled-city-input"
+                  label="City"
+                  type="city"
+                  autoComplete="current-city"
+                  variant="filled"
+                  value={searchInput}
+                  onChange={(e) => setSearchInput(e.target.value)}
+                ></TextField>
+              </div>
+              {/* <div>
                     <TextField
                     id="filled-artist-input"
                     label="Artist"
@@ -204,20 +210,20 @@ export default function Searchform() {
                     >
                     </TextField>
                 </div> */}
-            <div>
-              <Button
-                variant="contained"
-                color="primary"
-                className={classes.button}
-                endIcon={<Icon>send</Icon>}
-                type="submit"
-              >
-                Search
-              </Button>
-            </div>
-          </form>
-        </Container>
-      </Paper>
+              <div>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  className={classes.button}
+                  endIcon={<Icon>send</Icon>}
+                  type="submit"
+                >
+                  Search
+                </Button>
+              </div>
+            </form>
+          </Container>
+        </Paper>
       </div>
       {/* CARDS */}
       <div className="event-container">
@@ -226,12 +232,12 @@ export default function Searchform() {
             ? `Viewing ${searchedConcerts.length} results:`
             : "Search to find upcoming events"}
         </h2>
-       </div>
-        <div className="card-container">
+      </div>
+      <div className="card-container">
         {/* <Container maxWidth="sm"> */}
-          {searchedConcerts.map((concert) => {
-            return (
-              <div className="card" key={concert.concertId}>
+        {searchedConcerts.map((concert) => {
+          return (
+            <div className="card" key={concert.concertId}>
               <Card className={classes.card}>
                 <CardActionArea>
                   <CardMedia
@@ -259,7 +265,10 @@ export default function Searchform() {
                     disabled={savedConcertIds?.some(
                       (savedConcertId) => savedConcertId === concert.concertId
                     )}
-                    onClick={() => handleSaveConcert(concert.concertId)}
+                    onClick={function saveOne(event) {
+                      event.preventDefault();
+                      return handleSaveConcert(concert.concertId);
+                    }}
                   >
                     {savedConcertIds?.some(
                       (savedConcertId) => savedConcertId === concert.concertId
@@ -269,11 +278,12 @@ export default function Searchform() {
                   </Button>
                 </CardActions>
               </Card>
-        </div>
-            );
-          })}
+            </div>
+          );
+        })}
         {/* </Container> */}
-        </div>
+      </div>
+      
     </>
   );
 }

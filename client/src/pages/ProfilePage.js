@@ -1,6 +1,7 @@
 import React from 'react';
-import Searchform from "../components/Searchform";
+// import Searchform from "../components/Searchform";
 import EventCard from "../components/EventCard";
+import { Link , Switch} from "react-router-dom";
 
 import Auth from '../utils/auth';
 
@@ -16,7 +17,8 @@ const Profile = () => {
 
     return (
         <>
-        <Searchform />
+        <Link to="SearchPage">Search More Concerts!!!!</Link>
+        {/* <Searchform /> */}
         <EventCard />
         </>
     );
