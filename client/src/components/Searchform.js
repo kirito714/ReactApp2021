@@ -115,7 +115,7 @@ export default function Searchform() {
           concert.entities.length > 0 ? concert.entities[0].name : "No Venue Info Available",
         date: concert.start,
       }));
-      console.log(concertData);
+      console.log("date results");
 
       //updating useState
       setSearchedConcerts(concertData);
@@ -268,6 +268,14 @@ export default function Searchform() {
                     >
                       {concert.venue}
                     </Typography>
+                    <Typography
+                      variant="body2"
+                      color="textSecondary"
+                      component="p"
+                    >
+                      {concert.date}
+                    </Typography>
+              <a href = {`https://www.ticketmaster.com/search?q=" ${concert.title}`}>Buy ticket here</a>
                   </CardContent>
                 </CardActionArea>
                 <CardActions>
