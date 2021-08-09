@@ -101,18 +101,12 @@ export default function Searchform() {
       //Use API function of searchConcertData in API.js to send GET resquest
       const response = await SearchConcertData(searchInput);
 
-      // if (!response.ok) {
-      //   throw new Error("Something went wrong!");
-      // }
-
       //JSON the repsonse for searchConcertData
       const concertInfo = await response.results;
+      console.log(concertInfo);
 
       //Mapping over data we get back from API and
       //getting each piece of info for our model
-
-      console.log(concertInfo);
-
       const concertData = concertInfo.map((concert) => ({
         concertId: concert.id,
         title: concert.title,
@@ -253,7 +247,6 @@ export default function Searchform() {
         </h2>
       </div>
       <div className="card-container">
-        {/* <Container maxWidth="sm"> */}
         {searchedConcerts.map((concert) => {
           return (
             <div className="card" key={concert.concertId}>
@@ -300,7 +293,6 @@ export default function Searchform() {
             </div>
           );
         })}
-        {/* </Container> */}
       </div>
       
     </>

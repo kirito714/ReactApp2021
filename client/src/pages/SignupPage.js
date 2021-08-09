@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
       width: "60ch",
     },
   },
+  container: {
+    marginTop: "150px"
+  },
   iconButton: {
     padding: 10,
   },
@@ -60,9 +63,7 @@ export default function SignupPage() {
   };
   return (
     <>
-      <h1>Sign Up Page!</h1>
-
-      <Container maxWidth="sm">
+      <Container maxWidth="sm" className={classes.container}>
         <h2>Sign Up</h2>
         {data ? (
           <p>
@@ -77,8 +78,6 @@ export default function SignupPage() {
           >
             <div>
               <TextField
-                // name="username"
-                // type="text"
                 id="filled-username-input"
                 name="username"
                 label="Your username"
@@ -93,16 +92,12 @@ export default function SignupPage() {
 
             <div>
               <TextField
-                // className="form-input"
-                // name="email"
-                // type="email"
                 id="filled-email-input"
                 name="email"
                 label="Your email"
                 type="email"
                 autoComplete="current-email"
                 variant="filled"
-                // value={formState.email}
                 value={formState.name}
                 onChange={handleChange}
               />
@@ -110,27 +105,16 @@ export default function SignupPage() {
 
                 <div>
                   <TextField
-                  // className="form-input"
-                  // name="password"
-                  // type="password"
                   id="filled-password-input"
                   name="password"
                   label="Password"
                   type="password"
                   autoComplete="current-password"
                   variant="filled"
-                  // value={formState.password}
                   value={formState.name}
                   onChange={handleChange}
                 />
                 </div>
-                {/* <button
-                  className="btn btn-block btn-primary"
-                  style={{ cursor: 'pointer' }}
-                  type="submit"
-                >
-                  Submit
-                </button> */}
                 <Button
                   type="submit"
                   variant="contained"
