@@ -8,25 +8,58 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import "./eventcard.css";
+import "./cards.css";
+
+
 
 import { useQuery, useMutation } from "@apollo/client";
 import { GET_ME } from "../utils/queries";
 import { REMOVE_CONCERT } from "../utils/mutations";
 import { removeConcertId } from "../utils/localStorage";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345,
+    "& .MuiTextField-root": {
+      margin: theme.spacing(1),
+      width: "60ch",
+    },
+  },
+  paper: {
+    width: "70ch",
+    padding: 25
+  },
+  title: {
+    textAlign: "center"
+  },
+  button: {
+    margin: theme.spacing(1),
+    marginLeft: 215,
+  },
+  card: {
+    width: 250,
+    height: 350,
+    margin: "5px",
   },
   media: {
     height: 140,
   },
-  card: {
-    maxWidth: 345,
-    minWidth: 300,
+  buttonDiv: {
+    marginTop: 40,
+    marginBottom: 40,
+    marginRight: 40,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-end"
   },
-});
+  link: {
+    textDecoration: "none"
+  },
+  buttonProfile: {
+    color: "white",
+    backgroundColor: "brown",
+    opacity: "90%"
+  },
+}));
 
 export default function EventCard() {
   const classes = useStyles();
@@ -85,7 +118,7 @@ export default function EventCard() {
 
   return (
     <>
-      <div className="event-container">
+      <div className="card-container">
         {userData.me.saveConcert.map((concert) => {
           return (
             <div className="card" key={concert.concertId}>
@@ -105,7 +138,7 @@ export default function EventCard() {
                       color="textSecondary"
                       component="p"
                     >
-                      {concert.description}
+                      {concert.venue}
                     </Typography>
                   </CardContent>
                 </CardActionArea>
