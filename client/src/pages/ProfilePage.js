@@ -7,7 +7,7 @@ import Auth from '../utils/auth';
 
 const useStyles = makeStyles(() => ({
   root: {
-    marginBottom: 200
+    marginBottom: 200,
   },
   buttonDiv: {
     marginTop: 40,

@@ -68,32 +68,7 @@ export default function EventCard() {
   const userData = data;
   console.log(userData);
 
-  const [removeConcert, { error }] = useMutation(
-    REMOVE_CONCERT
-    //   , {
-    //   update(cache, {data: {removeConcert} }) {
-    //     try{
-    //       const cacheData = cache.readQuery({
-    //         query: GET_ME
-    //       });
-
-    //       const newData = {
-    //         saveConcert: cacheData.saveConcert.filter((c) => c.concertId !== concertId)
-    //       }
-
-    //       if (cacheData) {
-    //         cache.writeQuery({
-    //           query: GET_ME,
-    //           data: newData
-    //         });
-    //       }
-
-    //     } catch (err) {
-    //       console.log(err);
-    //     }
-    //   }
-    // }
-  );
+  const [removeConcert, { error }] = useMutation(REMOVE_CONCERT);
 
   const handleRemoveConcert = async (concertId) => {
     console.log(concertId);
@@ -165,5 +140,4 @@ export default function EventCard() {
     </>
   );
 }
-// removeConcertId(concert.concertId)
-// handleRemoveConcert(concert.concertId)
+

@@ -24,6 +24,9 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     marginLeft: 215
   },
+  container: {
+    marginTop: "150px"
+  }
 }));
 
 const Login = (props) => {
@@ -64,65 +67,63 @@ const Login = (props) => {
 
   return (
     <>
-          <h1>Login Page!</h1>
+      <Container maxWidth="sm" className={classes.container}>
+      <h2>Log in</h2>
+        {data ? (
+          <p>
+            Success! You may now head{" "}
+            <Link to="/">back to the homepage.</Link>
+          </p>
+        ) : (
+          <form className={classes.root} noValidate autoComplete="off" onSubmit={handleFormSubmit}>
+            <div>
+            <TextField
+              // className="form-input"
+              // placeholder="Your email"
+              // name="email"
+              // type="email"
+              id="filled-email-input"
+              name="email"
+              label="Your email"
+              type="email"
+              autoComplete="current-email"
+              variant="filled"
+              value={formState.email}
+              onChange={handleChange}
+            />
+            </div>
 
-          <Container maxWidth="sm">
-          <h2>Log in</h2>
-            {data ? (
-              <p>
-                Success! You may now head{" "}
-                <Link to="/">back to the homepage.</Link>
-              </p>
-            ) : (
-              <form className={classes.root} noValidate autoComplete="off" onSubmit={handleFormSubmit}>
-                <div>
-                <TextField
-                  // className="form-input"
-                  // placeholder="Your email"
-                  // name="email"
-                  // type="email"
-                  id="filled-email-input"
-                  name="email"
-                  label="Your email"
-                  type="email"
-                  autoComplete="current-email"
-                  variant="filled"
-                  value={formState.email}
-                  onChange={handleChange}
-                />
-                </div>
+            <div>
+            <TextField
+              // className="form-input"
+              // placeholder="******"
+              // name="password"
+              // type="password"
+              id="filled-password-input"
+              name="password"
+              label="******"
+              type="password"
+              autoComplete="current-password"
+              variant="filled"
+              value={formState.password}
+              onChange={handleChange}
+            />
+            </div>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              className={classes.button}
+              endIcon={<PersonIcon/>}
+              >
+              Submit
+            </Button>
+          </form>
+        )}
 
-                <div>
-                <TextField
-                  // className="form-input"
-                  // placeholder="******"
-                  // name="password"
-                  // type="password"
-                  id="filled-password-input"
-                  name="password"
-                  label="******"
-                  type="password"
-                  autoComplete="current-password"
-                  variant="filled"
-                  value={formState.password}
-                  onChange={handleChange}
-                />
-                </div>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  className={classes.button}
-                  endIcon={<PersonIcon/>}
-                  >
-                  Submit
-                </Button>
-              </form>
-            )}
+        {error && (<div>{error.message}</div>)}
 
-            {error && (<div>{error.message}</div>)}
-
-            </Container>
+        </Container>
 
 
     </>
