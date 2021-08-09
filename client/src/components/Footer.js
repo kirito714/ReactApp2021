@@ -62,21 +62,21 @@ export default function Footer() {
               icon={
                 <img src="https://img.icons8.com/ios-glyphs/60/000000/sonic-the-hedgehog-1.png" />
               }
-              onClick={() => window.open("https://github.com/kirito714")}/>
+              onClick={() => window.open("https://kirito714.github.io/React-Portfolio/")}/>
           </TabPanel>
           <TabPanel index={1}>
             <Tab  label="Mikey Thompson"
             icon={
               <img src="https://img.icons8.com/ios-glyphs/60/000000/futurama-nibbler.png" />
             }
-            onClick={() => window.open("https://github.com/methom21")}/>
+            onClick={() => window.open("https://festive-lewin-35e390.netlify.app/")}/>
           </TabPanel>
           <TabPanel index={2}>
             <Tab label="Paola Gonzalez"
             icon={
               <img src="https://img.icons8.com/ios-glyphs/60/000000/stormtrooper.png" />
             }
-            onClick={() => window.open("https://github.com/Pao1aG")}/>
+            onClick={() => window.open("https://pao1ag.github.io/react-portfolio/")}/>
           </TabPanel>
           <TabPanel index={3}>
             <Tab 
@@ -85,7 +85,7 @@ export default function Footer() {
               icon={
                 <img src="https://img.icons8.com/ios-glyphs/60/000000/spyro.png" />
               }
-              onClick={() => window.open("https://github.com/Cassiep1986")}/>
+              onClick={() => window.open("https://gracious-pasteur-71b41c.netlify.app/")}/>
           </TabPanel>
         </Tabs>
       </AppBar>
