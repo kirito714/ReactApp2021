@@ -1,78 +1,94 @@
 import React from "react";
 import "./Footer.css";
 import { makeStyles } from "@material-ui/core/styles";
-import BottomNavigation from "@material-ui/core/BottomNavigation";
-import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import AppBar from "@material-ui/core/AppBar";
-import { SignalWifi1BarLock } from "@material-ui/icons";
-// import FavoriteIcon from '@material-ui/icons/Favorite';
-// import LocationOnIcon from '@material-ui/icons/LocationOn';
-// import Typography from '@material-ui/core/Typography';
-// import Container from '@material-ui/core/Container';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import PropTypes from 'prop-types';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
-    width: "100%",
-    height: "20vh",
-    bottom: "0px",
-    left: "0px",
-    right: "0px",
-    backgroundColor: "#C8C7D9",
-    marginTop: "65px",
-    color: "black",
+    flexGrow: 1,
+    // backgroundColor: theme.palette.background.paper,
+    marginTop: "230px"
   },
   appBar: {
-    top: "auto",
-    bottom: 0,
+        top: "auto",
+        bottom: 0,
+        backgroundColor: "#B47030"
   },
-});
+}));
+
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+};
 
 export default function Footer() {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
 
   return (
-    <>
-      <AppBar color="primary" className={classes.appBar}>
-        <BottomNavigation
-          // value={value}
-          // onChange={(event, newValue) => {
-          //   setValue(newValue);
-          // }}
-          showLabels
-          className={classes.root}
-        >
-          {/* <BottomNavigationAction label="Recents"  icon={<RestoreIcon />}/> */}
-          <BottomNavigationAction
-            label="Joe Amador"
-            icon={
-              <img src="https://img.icons8.com/ios-glyphs/60/000000/sonic-the-hedgehog-1.png" />
-            }
-            onClick={() => window.open("https://github.com/kirito714")}
-          />
-          <BottomNavigationAction
-            label="Mikey Thompson"
+    <div className={classes.root}>
+      <AppBar className={classes.appBar} position="fixed">
+        <Tabs centered>
+          <TabPanel index={0}>
+            <Tab 
+              edge="start"
+              label="Joe Amador"
+              icon={
+                <img src="https://img.icons8.com/ios-glyphs/60/000000/sonic-the-hedgehog-1.png" />
+              }
+              onClick={() => window.open("https://github.com/kirito714")}/>
+          </TabPanel>
+          <TabPanel index={1}>
+            <Tab  label="Mikey Thompson"
             icon={
               <img src="https://img.icons8.com/ios-glyphs/60/000000/futurama-nibbler.png" />
             }
-            onClick={() => window.open("https://github.com/methom21")}
-          />
-          <BottomNavigationAction
-            label="Paola Gonzalez"
+            onClick={() => window.open("https://github.com/methom21")}/>
+          </TabPanel>
+          <TabPanel index={2}>
+            <Tab label="Paola Gonzalez"
             icon={
               <img src="https://img.icons8.com/ios-glyphs/60/000000/stormtrooper.png" />
             }
-            onClick={() => window.open("https://github.com/Pao1aG")}
-          />
-          <BottomNavigationAction
-            label="Cassie Pacheco"
-            icon={
-              <img src="https://img.icons8.com/ios-glyphs/60/000000/spyro.png" />
-            }
-            onClick={() => window.open("https://github.com/Cassiep1986")}
-          />
-        </BottomNavigation>
+            onClick={() => window.open("https://github.com/Pao1aG")}/>
+          </TabPanel>
+          <TabPanel index={3}>
+            <Tab 
+              edge="end"
+              label="Cassie Pacheco"
+              icon={
+                <img src="https://img.icons8.com/ios-glyphs/60/000000/spyro.png" />
+              }
+              onClick={() => window.open("https://github.com/Cassiep1986")}/>
+          </TabPanel>
+        </Tabs>
       </AppBar>
-    </>
+    </div>
   );
 }

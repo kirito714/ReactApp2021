@@ -4,10 +4,8 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
-// import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from "@material-ui/icons/Home";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import Switch from "@material-ui/core/Switch";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import { Link } from "react-router-dom";
@@ -19,85 +17,54 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
+  appbar: {
+    backgroundColor: "#B47030"
+  },
   menuButton: {
     marginRight: theme.spacing(2),
+  },
+  menuLink: {
+    color: "white",
   },
   title: {
     flexGrow: 1,
   },
+  link: {
+    color: "black",
+    textDecoration: "none"
+  }
 }));
 
 export default function Navbar() {
   const classes = useStyles();
-  const [auth, setAuth] = React.useState(true);
   const [anchorProfile, setAnchorProfile] = React.useState(null);
-  const [anchorMenu, setAnchorMenu] = React.useState(null);
   const openProfile = Boolean(anchorProfile);
-  const openMenu = Boolean(anchorMenu);
-
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
-  };
 
   const handleProfile = (event) => {
     setAnchorProfile(event.currentTarget);
-  };
-
-  const handleMenu = (event) => {
-    setAnchorMenu(event.currentTarget);
   };
 
   const handleCloseProfile = () => {
     setAnchorProfile(null);
   };
 
-  const handleCloseMenu = () => {
-    setAnchorMenu(null);
-  };
-
   return (
     <div className={classes.root}>
-      {/* <FormGroup>
-          <FormControlLabel
-            control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
-            label={auth ? 'Logout' : 'Login'}
-          />
-        </FormGroup> */}
-      <AppBar position="static">
+      <AppBar position="static" className={classes.appbar}>
         <Toolbar>
+          <Link to="/" className={classes.menuLink}>
           <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="menu"
-            onClick={handleMenu}
           >
             <HomeIcon />
           </IconButton>
-          <Menu
-            id="menu-appbar"
-            anchorprofile={anchorMenu}
-            anchorOrigin={{
-              vertical: "top",
-              horizontal: "left",
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "left",
-            }}
-            open={openMenu}
-            onClose={handleCloseMenu}
-          >
-            <Link to="/">
-              <MenuItem onClick={handleCloseMenu}>Home</MenuItem>
-            </Link>
-            {/* <MenuItem onClick={handleCloseMenu}>Search</MenuItem> */}
-          </Menu>
+          </Link>
           <Typography variant="h6" className={classes.title}>
             Events Near You!
           </Typography>
-          {auth && (
             <div>
               <IconButton
                 aria-label="account of current user"
@@ -125,26 +92,28 @@ export default function Navbar() {
               >
                 {!Auth.loggedIn() ? (
                   <>
-                    <Link to="/Login">
+                    <Link to="/Login" className={classes.link}>
                       <MenuItem onClick={handleCloseProfile}>Login</MenuItem>
                     </Link>
-                    <Link to="/SignUp">
+                    <Link to="/SignUp" className={classes.link}>
                       <MenuItem onClick={handleCloseProfile}>SignUp</MenuItem>
                     </Link>
                   </>
                 ) : (
                   <>
-                    <Link to="/Profile">
+                    <Link to="/Profile" className={classes.link}>
                       <MenuItem onClick={handleCloseProfile}>Profile</MenuItem>
                     </Link>
-                  <Link to="/">
-                    <MenuItem onClick={(e) => Auth.logout()}>Logout</MenuItem>
-                  </Link>
+                    <Link to ="/SearchPage" className={classes.link}>
+                      <MenuItem onClick={handleCloseProfile}>Search</MenuItem>
+                    </Link>
+                    <Link to="/" className={classes.link}>
+                      <MenuItem onClick={(e) => Auth.logout()}>Logout</MenuItem>
+                    </Link>
                   </>
                 )}
               </Menu>
             </div>
-          )}
         </Toolbar>
       </AppBar>
     </div>
