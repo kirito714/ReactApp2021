@@ -12,6 +12,7 @@ import Signup from "./pages/SignupPage";
 import HomePage from "./pages/Home";
 import Login from "./pages/Login";
 import Profile from "./pages/ProfilePage";
+import SearchPage from "./pages/SearchPage";
 import { setContext } from "@apollo/client/link/context";
 
 import Auth from "./utils/auth";
@@ -59,9 +60,15 @@ function App() {
         </Route>
 
         <Route
-          path="/Profile"
+          exact path="/Profile"
           render={() =>
             Auth.loggedIn() ? <Profile /> : <Redirect to="/Login" />
+          }
+        />
+        <Route
+          exact path="/SearchPage"
+          render={() =>
+            Auth.loggedIn() ? <SearchPage /> : <Redirect to="/Login" />
           }
         />
 

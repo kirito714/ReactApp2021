@@ -115,6 +115,7 @@ export default function EventCard() {
                     color="primary"
                     type="button"
                     onClick={function removeOne() {
+                      window.location.assign('/Profile');
                       const removeMongo = handleRemoveConcert(concert.concertId);
                       const removeLocal = removeConcertId(concert.concertId);
                       return removeMongo,removeLocal;
