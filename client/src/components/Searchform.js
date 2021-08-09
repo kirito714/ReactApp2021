@@ -15,7 +15,7 @@ import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
-import "./searchbar.css";
+import "./cards.css";
 
 //CARDS THAT CONTAIN RESULTS FROM SEARCH
 import Card from "@material-ui/core/Card";
