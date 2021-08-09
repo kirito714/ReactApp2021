@@ -1,42 +1,57 @@
-# events near you!
+# Events Near You!
 
-## description
+## Description
 
- our group created a application where the user can login search and save those events they are intested in.
+ Our group created an application where the user can login and search for events near their city and save those that they are intested in.
 
- ## table of contents
- #### where the app is 
- #### user story
- #### task breakdown
- #### wireframe
- #### contact information
+ ---
 
-### where to find the App
+## Table of Contents
+* Access the App
+* User Story
+* Task Breakdown
+* Wireframe
+* Contact Us
 
- just go to the active web link and the site is up and running!
+ ---
 
- ### User story 
- As a user i want to be able to find all of the events that interest me and be able to save them to my profile<br>
- When i open the application <br>
- Then i am prompted to log in or i wont be able to search or see events<br>
- When i have created an account or logged in <br>
-Then i will be able to view events and search for specific events around my location<br>
-When i find an event that i think is intersting<br>
-Then i have the ability to save the event and all correspoding information about that event<br>
-When i dont know the exact event i want to look for<br>
-Then i can search for the type of event im intersted in and the results will populate<br>
+## Access the App
 
-### task breakdown
-Joe and Paola will be working on the backend<br>
-Cassie and Mikey will be working on the front end<br>
+You can access our live application here:
+> https://aqueous-peak-04279.herokuapp.com/
 
-### Wireframe
+---
+
+## User Story
+```
+AS A USER I want to be able to find all of the events that interest me 
+SO THAT I can save them to my profile.
+WHEN I open the application,
+THEN I am prompted to login or signup or I won’t be able to search for or see events.
+WHEN I have created an account or logged in,
+THEN I will be able to search events near me and see my saved events.
+WHEN I find an event that I think is interesting,
+THEN I have the ability to save an event an all of its corresponding info.
+```
+---
+
+## Task Breakdown
+Joe and Paola focused on the backend and 
+Cassie and Mikey focused on the frontend. However, every team member contributed to every style and overall functionality of our application.
+
+---
+
+## Wireframe
 ![figma wireframe](client/src/images/wireframe.png?raw=true "Wireframe")
 
+---
 
+## Contact Us:
 
-### contact info:
+[Joe Amador](https://github.com/kirito714) | Github: kirito714
 
-## github:
+[Mikey Thompson](https://github.com/Methom21) | Github: Methom21
 
- Methom21, Pao1aG, kirito714, Cassiep1986 
+[Cassie Pacheco](https://github.com/Cassiep1986) | Github: Cassiep1986
+
+[Paola Gonzalez](https://github.com/Pao1aG) | Github: Pao1aG
