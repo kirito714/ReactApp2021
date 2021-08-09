@@ -40,6 +40,7 @@ async function SearchConcertData(city) {
     country: "US",
     limit: "10",
     "location_around.origin": `${lat},${lon}`,
+    "within": "10000m@" + `${lat},${lon}`,
     sort: "start",
     "start.gt": `${todaysDate}`,
   }).toString();
