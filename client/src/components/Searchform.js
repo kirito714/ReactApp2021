@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link , Switch} from "react-router-dom";
 
 import Auth from "../utils/auth";
 import { getSavedConcertIds, saveConcertIds } from "../utils/localStorage";
@@ -8,7 +7,6 @@ import SearchConcertData from "../utils/API";
 import { useMutation } from "@apollo/client";
 import { SAVE_CONCERT } from "../utils/mutations";
 import { GET_ME } from "../utils/queries";
-import SavedCerts from "./SavedCerts";
 
 //SEARCH BAR
 import { makeStyles } from "@material-ui/core/styles";
@@ -36,9 +34,10 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     width: "70ch",
+    padding: 25
   },
-  iconButton: {
-    padding: 10,
+  title: {
+    textAlign: "center"
   },
   button: {
     margin: theme.spacing(1),
@@ -51,6 +50,22 @@ const useStyles = makeStyles((theme) => ({
   },
   media: {
     height: 140,
+  },
+  buttonDiv: {
+    marginTop: 40,
+    marginBottom: 40,
+    marginRight: 40,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-end"
+  },
+  link: {
+    textDecoration: "none"
+  },
+  buttonProfile: {
+    color: "white",
+    backgroundColor: "brown",
+    opacity: "90%"
   },
 }));
 
@@ -103,7 +118,7 @@ export default function Searchform() {
         title: concert.title,
         description: concert.description,
         venue:
-          concert.entities.length > 0 ? concert.entities[0].name : "no venue",
+          concert.entities.length > 0 ? concert.entities[0].name : "No Venue Info Available",
         date: concert.start,
       }));
       console.log(concertData);
@@ -177,11 +192,15 @@ export default function Searchform() {
 
   return (
     <>
-  <Button onClick={()=> window.location.assign('/Profile')}>Your Saved Concerts Here!!!</Button>
+    <div className={classes.buttonDiv}>
+    <Button onClick={()=> window.location.assign('/Profile')} className={classes.buttonProfile}>
+      Your Saved Concerts Here!!!
+    </Button>
+    </div>
       {/* SEARCH BAR */}
       <div className="search-container">
-        <Paper className="{classes.paper} search-title">
-          <h1>Search for an Event Near You</h1>
+        <Paper className={classes.paper}  elevation={3}>
+          <h1 className={classes.title}>Search for an Event Near You</h1>
           <Container maxWidth="sm">
             <form
               className={classes.root}
@@ -230,7 +249,7 @@ export default function Searchform() {
         <h2>
           {searchedConcerts.length > 1
             ? `Viewing ${searchedConcerts.length} results:`
-            : "Search to find upcoming events"}
+            : ""}
         </h2>
       </div>
       <div className="card-container">
