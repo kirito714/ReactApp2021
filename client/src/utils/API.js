@@ -1,16 +1,19 @@
-const axios = require("axios").default;
-const fetch = require("node-fetch");
-// require('dotenv').config();
-// IMPORT DATA FROM USER INPUT
+ // IMPORT DATA FROM USER INPUT
 // cityName = this is what the user types into input field to search by city
+
+  // const artistName = artist.toLowerCase().split(" ").join("+");
 
 async function SearchConcertData(city) {
   const capitalizeCity = city.charAt(0).toUpperCase() + city.slice(1);
   const cityName = capitalizeCity.replace(/"/g, "");
 
-  // const artistName = artist.toLowerCase().split(" ").join("+");
 
-  const apiKey = "72a52a72e7a14c1a47a69d46ea5e7322";
+  
+  let apiKey = process.env.REACT_APP_API_KEY;
+  console.log("API KEY", apiKey)
+
+
+
   const openWeatherParams = new URLSearchParams({
     q: `${cityName}`,
     units: "imperial",
@@ -45,13 +48,19 @@ async function SearchConcertData(city) {
     "start.gt": `${todaysDate}`,
   }).toString();
 
+
+
+  
+  const apiPredict = process.env.REACT_APP_EVENT_KEY;
+  console.log("API2", apiPredict)
+console.log("Test", apiPredict)
+
   const res = await (
     await fetch(
       `https://api.predicthq.com/v1/events?${predictHQParams}`,
       {
         headers: {
-          Authorization:
-            "Bearer UCPQh7iuieqQpZWV4NOqoJPMhKvavlBNoAfad84K",
+          Authorization:apiPredict
         },
       }
     )
