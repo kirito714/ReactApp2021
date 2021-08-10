@@ -45,7 +45,7 @@ async function SearchConcertData(city) {
   const res = await (
     await fetch(`https://api.predicthq.com/v1/events?${predictHQParams}`, {
       headers: {
-        Authorization: apiPredict,
+        Authorization: `Bearer ${apiPredict}`,
       },
     })
   ).json();
