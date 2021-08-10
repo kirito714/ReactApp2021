@@ -40,7 +40,7 @@ async function SearchConcertData(city) {
     "start.gt": `${todaysDate}`,
   }).toString();
 
-  const apiPredict = process.env.REACT_APP_EVENT_KEY;git 
+  const apiPredict = process.env.REACT_APP_EVENT_KEY;
 
   const res = await (
     await fetch(`https://api.predicthq.com/v1/events?${predictHQParams}`, {
