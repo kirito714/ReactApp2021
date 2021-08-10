@@ -22,3 +22,22 @@ h2{
     justify-content: center;
 
 }
+.link {
+    font-size: large;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    margin-left: 39px;
+    margin-top: 20px;
+    color: orange
+}
+
+.link:hover{
+    color:red;
+}
+
+.link2:hover{
+    color: blue;
+}
+
+.viewing {
+    color: white;
+}

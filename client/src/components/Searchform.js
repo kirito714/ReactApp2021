@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import moment from "moment"
 import Auth from "../utils/auth";
 import { getSavedConcertIds, saveConcertIds } from "../utils/localStorage";
 import SearchConcertData from "../utils/API";
@@ -34,10 +34,10 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     width: "70ch",
-    padding: 25
+    padding: 25,
   },
   title: {
-    textAlign: "center"
+    textAlign: "center",
   },
   button: {
     margin: theme.spacing(1),
@@ -57,15 +57,15 @@ const useStyles = makeStyles((theme) => ({
     marginRight: 40,
     display: "flex",
     flexDirection: "row",
-    justifyContent: "flex-end"
+    justifyContent: "flex-end",
   },
   link: {
-    textDecoration: "none"
+    textDecoration: "none",
   },
   buttonProfile: {
     color: "white",
     backgroundColor: "brown",
-    opacity: "90%"
+    opacity: "90%",
   },
 }));
 
@@ -105,6 +105,7 @@ export default function Searchform() {
       const concertInfo = await response.results;
       console.log(concertInfo);
 
+      
       //Mapping over data we get back from API and
       //getting each piece of info for our model
       const concertData = concertInfo.map((concert) => ({
@@ -112,10 +113,12 @@ export default function Searchform() {
         title: concert.title,
         description: concert.description,
         venue:
-          concert.entities.length > 0 ? concert.entities[0].name : "No Venue Info Available",
-        date: concert.start,
+        concert.entities.length > 0
+        ? concert.entities[0].name
+        : "No Venue Info Available",
+        date: moment(concert.start, "YYYY-MM-DD").format("MM/DD/YYYY"),
       }));
-      console.log("date results");
+      console.log(concertInfo)
 
       //updating useState
       setSearchedConcerts(concertData);
@@ -125,7 +128,7 @@ export default function Searchform() {
       console.error(err);
     }
   };
-
+  
   //USE MUTATION TO UPDATE DATABASE
   const [saveConcert, { error }] = useMutation(SAVE_CONCERT, {
     update(cache, { data: { saveConcert } }) {
@@ -145,7 +148,7 @@ export default function Searchform() {
       }
     },
   });
-
+  
   //SAVE Concert TO MODEL/DATABASE
   const handleSaveConcert = async (concertId) => {
     //look through the searchedConcerts useState and
@@ -153,47 +156,50 @@ export default function Searchform() {
 
     const concertToSave = searchedConcerts.find(
       (concert) => concert.concertId === concertId
-    );
+      );
+      
+      console.log(`This is the concertToSave ${concertToSave}`);
+      
+      // get token from Auth.js
+      const token = Auth.loggedIn() ? Auth.getToken() : null;
+      
+      if (!token) {
+        return false;
+      }
+      
+      try {
+        //use mutation function and pass in the concert info that needs to be saved
+        const { data } = await saveConcert({
+          variables: {
+            ...concertToSave,
+          },
+        });
+        
+        //if concert saves to user's account, save the concertId to state,
+        // which will save in local storage
+        setSavedConcertIds([...savedConcertIds, concertToSave.concertId]);
+      } catch (err) {
+        console.error(` This is the catch block for handleSaveConcert`, err);
+      }
+      
+      // setSearchedConcerts([]);
+    };
 
-    console.log(`This is the concertToSave ${concertToSave}`);
-
-    // get token from Auth.js
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-    if (!token) {
-      return false;
-    }
-
-    try {
-      //use mutation function and pass in the concert info that needs to be saved
-      const { data } = await saveConcert({
-        variables: {
-          ...concertToSave,
-        },
-      });
-
-      //if concert saves to user's account, save the concertId to state,
-      // which will save in local storage
-      setSavedConcertIds([...savedConcertIds, concertToSave.concertId]);
-    } catch (err) {
-      console.error(` This is the catch block for handleSaveConcert`, err);
-    }
-
-    // setSearchedConcerts([]);
-  };
-
-  const classes = useStyles();
+    const classes = useStyles();
 
   return (
     <>
-    <div className={classes.buttonDiv}>
-    <Button onClick={()=> window.location.assign('/Profile')} className={classes.buttonProfile}>
-      Your Saved Concerts Here!!!
-    </Button>
-    </div>
+      <div className={classes.buttonDiv}>
+        <Button
+          onClick={() => window.location.assign("/Profile")}
+          className={classes.buttonProfile}
+        >
+          Your Saved Concerts Here!!!
+        </Button>
+      </div>
       {/* SEARCH BAR */}
       <div className="search-container">
-        <Paper className={classes.paper}  elevation={3}>
+        <Paper className={classes.paper} elevation={3}>
           <h1 className={classes.title}>Search for an Event Near You</h1>
           <Container maxWidth="sm">
             <form
@@ -231,6 +237,7 @@ export default function Searchform() {
                   endIcon={<Icon>send</Icon>}
                   type="submit"
                 >
+                  On
                   Search
                 </Button>
               </div>
@@ -240,7 +247,7 @@ export default function Searchform() {
       </div>
       {/* CARDS */}
       <div className="event-container">
-        <h2>
+        <h2 className= "viewing">
           {searchedConcerts.length > 1
             ? `Viewing ${searchedConcerts.length} results:`
             : ""}
@@ -275,11 +282,19 @@ export default function Searchform() {
                     >
                       {concert.date}
                     </Typography>
-              <a href = {`https://www.ticketmaster.com/search?q=" ${concert.title}`}>Buy ticket here</a>
+                    <br></br>
+                    <a
+                      href={`https://www.ticketmaster.com/search?q=" ${concert.title}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="link"
+                    >
+                      Buy tickets here
+                    </a>
                   </CardContent>
                 </CardActionArea>
                 <CardActions>
-                  <Button
+                  <Button className="link"
                     size="small"
                     color="primary"
                     disabled={savedConcertIds?.some(
@@ -288,6 +303,7 @@ export default function Searchform() {
                     onClick={function saveOne(event) {
                       event.preventDefault();
                       return handleSaveConcert(concert.concertId);
+                    
                     }}
                   >
                     {savedConcertIds?.some(
@@ -302,7 +318,6 @@ export default function Searchform() {
           );
         })}
       </div>
-      
     </>
   );
 }
