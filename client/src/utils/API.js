@@ -10,7 +10,7 @@ async function SearchConcertData(city) {
 
   
   let apiKey = process.env.REACT_APP_API_KEY;
-  console.log("API KEY", apiKey)
+ 
 
 
 
@@ -34,7 +34,6 @@ async function SearchConcertData(city) {
   const yyyy = today.getFullYear();
 
   const todaysDate = yyyy + '-' + mm + '-' + dd;
-  console.log(today);
 
 
 
@@ -52,8 +51,7 @@ async function SearchConcertData(city) {
 
   
   const apiPredict = process.env.REACT_APP_EVENT_KEY;
-  console.log("API2", apiPredict)
-console.log("Test", apiPredict)
+
 
   const res = await (
     await fetch(

@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
     width: 250,
-    height: 350,
+    height: 400,
     margin: "5px",
   },
   media: {
@@ -115,6 +115,22 @@ export default function EventCard() {
                     >
                       {concert.venue}
                     </Typography>
+                    <Typography
+                      variant="body2"
+                      color="textSecondary"
+                      component="p"
+                    >
+                      {concert.date}
+                    </Typography>
+                    <br></br>
+                    <a
+                      href={`https://www.ticketmaster.com/search?q=" ${concert.title}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="link"
+                    >
+                      Buy tickets here
+                    </a>
                   </CardContent>
                 </CardActionArea>
                 <CardActions>
