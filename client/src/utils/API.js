@@ -3,7 +3,7 @@
 
 // const artistName = artist.toLowerCase().split(" ").join("+");
 
-async function SearchConcertData(city) {
+export async function SearchConcertData(city) {
   const capitalizeCity = city.charAt(0).toUpperCase() + city.slice(1);
   const cityName = capitalizeCity.replace(/"/g, "");
 
@@ -33,12 +33,14 @@ async function SearchConcertData(city) {
   const predictHQParams = new URLSearchParams({
     category: "concerts",
     country: "US",
-    limit: "10",
+    limit: "20",
     "location_around.origin": `${lat},${lon}`,
     within: "10000m@" + `${lat},${lon}`,
     sort: "start",
     "start.gt": `${todaysDate}`,
   }).toString();
+
+  console.log(predictHQParams);
 
   const apiPredict = process.env.REACT_APP_EVENT_KEY;
 
@@ -52,4 +54,35 @@ async function SearchConcertData(city) {
   return res;
 }
 
-export default SearchConcertData;
+export async function SearchArtistData(artist) {
+  const today = new Date();
+  const dd = String(today.getDate()).padStart(2, "0");
+  const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  const yyyy = today.getFullYear();
+
+  const todaysDate = yyyy + "-" + mm + "-" + dd;
+
+  const predictHQParams = new URLSearchParams({
+    category: "concerts",
+    country: "US",
+    limit: "20",
+    q: `${artist}`,
+    sort: "start",
+    "start.gt": `${todaysDate}`,
+  }).toString();
+
+  console.log(predictHQParams);
+
+  const apiPredict = process.env.REACT_APP_EVENT_KEY;
+
+  const res = await (
+    await fetch(`https://api.predicthq.com/v1/events?${predictHQParams}`, {
+      headers: {
+        Authorization: `Bearer ${apiPredict}`,
+      },
+    })
+  ).json();
+  return res;
+}
+
+
