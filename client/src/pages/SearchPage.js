@@ -1,11 +1,13 @@
-import Searchform from "../components/Searchform";
-import Artistform from "../components/Artistform";
+import React from "react";
+
+import Button from "@material-ui/core/Button";
 
 export default function SearchPage() {
   return (
     <>
-      <Searchform />
-      <Artistform />
+      <Button onClick={() => window.location.assign("/SearchArtist")}>
+        Search Events By Area!
+      </Button>
     </>
   );
 }

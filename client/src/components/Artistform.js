@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import moment from "moment"
+import moment from "moment";
 import Auth from "../utils/auth";
 import { getSavedConcertIds, saveConcertIds } from "../utils/localStorage";
 import { SearchArtistData } from "../utils/API";
@@ -105,7 +105,6 @@ export default function Artistform() {
       const concertInfo = await response.results;
       console.log(concertInfo);
 
-      
       //Mapping over data we get back from API and
       //getting each piece of info for our model
       const concertData = concertInfo.map((concert) => ({
@@ -113,23 +112,22 @@ export default function Artistform() {
         title: concert.title,
         description: concert.description,
         venue:
-        concert.entities.length > 0
-        ? concert.entities[0].name
-        : "No Venue Info Available",
+          concert.entities.length > 0
+            ? concert.entities[0].name
+            : "No Venue Info Available",
         date: moment(concert.start, "YYYY-MM-DD").format("MM/DD/YYYY"),
       }));
-      console.log(concertInfo)
+      console.log(concertInfo);
 
       //updating useState
       setSearchedConcerts(concertData);
       // clearing searchInput
       setArtistInput("");
-
     } catch (err) {
       console.error(err);
     }
   };
-  
+
   //USE MUTATION TO UPDATE DATABASE
   const [saveConcert, { error }] = useMutation(SAVE_CONCERT, {
     update(cache, { data: { saveConcert } }) {
@@ -149,7 +147,7 @@ export default function Artistform() {
       }
     },
   });
-  
+
   //SAVE Concert TO MODEL/DATABASE
   const handleSaveConcert = async (concertId) => {
     //look through the searchedConcerts useState and
@@ -157,36 +155,36 @@ export default function Artistform() {
 
     const concertToSave = searchedConcerts.find(
       (concert) => concert.concertId === concertId
-      );
-      
-      console.log(`This is the concertToSave ${concertToSave}`);
-      
-      // get token from Auth.js
-      const token = Auth.loggedIn() ? Auth.getToken() : null;
-      
-      if (!token) {
-        return false;
-      }
-      
-      try {
-        //use mutation function and pass in the concert info that needs to be saved
-        const { data } = await saveConcert({
-          variables: {
-            ...concertToSave,
-          },
-        });
-        
-        //if concert saves to user's account, save the concertId to state,
-        // which will save in local storage
-        setSavedConcertIds([...savedConcertIds, concertToSave.concertId]);
-      } catch (err) {
-        console.error(` This is the catch block for handleSaveConcert`, err);
-      }
-      
-      // setSearchedConcerts([]);
-    };
+    );
 
-    const classes = useStyles();
+    console.log(`This is the concertToSave ${concertToSave}`);
+
+    // get token from Auth.js
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
+    try {
+      //use mutation function and pass in the concert info that needs to be saved
+      const { data } = await saveConcert({
+        variables: {
+          ...concertToSave,
+        },
+      });
+
+      //if concert saves to user's account, save the concertId to state,
+      // which will save in local storage
+      setSavedConcertIds([...savedConcertIds, concertToSave.concertId]);
+    } catch (err) {
+      console.error(` This is the catch block for handleSaveConcert`, err);
+    }
+
+    // setSearchedConcerts([]);
+  };
+
+  const classes = useStyles();
 
   return (
     <>
@@ -196,6 +194,14 @@ export default function Artistform() {
           className={classes.buttonProfile}
         >
           Your Saved Concerts Here!!!
+        </Button>
+      </div>
+      <div className={classes.buttonDiv}>
+        <Button
+          onClick={() => window.location.assign("/SearchEvent")}
+          className={classes.buttonProfile}
+        >
+          Search By Area!
         </Button>
       </div>
       {/* SEARCH BAR */}
@@ -210,7 +216,7 @@ export default function Artistform() {
               onSubmit={handleFormSubmit}
             >
               <div>
-                  <TextField
+                <TextField
                   id="filled-artist-input"
                   label="Artist"
                   type="artist"
@@ -218,9 +224,8 @@ export default function Artistform() {
                   variant="filled"
                   value={artistInput}
                   onChange={(e) => setArtistInput(e.target.value)}
-                  >
-                  </TextField>
-                </div>
+                ></TextField>
+              </div>
               <div>
                 <Button
                   variant="contained"
@@ -229,8 +234,7 @@ export default function Artistform() {
                   endIcon={<Icon>send</Icon>}
                   type="submit"
                 >
-                  On
-                  Search
+                  On Search
                 </Button>
               </div>
             </form>
@@ -239,7 +243,7 @@ export default function Artistform() {
       </div>
       {/* CARDS */}
       <div className="event-container">
-        <h2 className= "viewing">
+        <h2 className="viewing">
           {searchedConcerts.length > 1
             ? `Viewing ${searchedConcerts.length} results:`
             : ""}
@@ -286,7 +290,8 @@ export default function Artistform() {
                   </CardContent>
                 </CardActionArea>
                 <CardActions>
-                  <Button className="link"
+                  <Button
+                    className="link"
                     size="small"
                     color="primary"
                     disabled={savedConcertIds?.some(
@@ -295,7 +300,6 @@ export default function Artistform() {
                     onClick={function saveOne(event) {
                       event.preventDefault();
                       return handleSaveConcert(concert.concertId);
-                    
                     }}
                   >
                     {savedConcertIds?.some(
