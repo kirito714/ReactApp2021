@@ -104,8 +104,11 @@ export default function Navbar() {
                     <Link to="/Profile" className={classes.link}>
                       <MenuItem onClick={handleCloseProfile}>Profile</MenuItem>
                     </Link>
-                    <Link to ="/SearchPage" className={classes.link}>
-                      <MenuItem onClick={handleCloseProfile}>Search</MenuItem>
+                    <Link to ="/SearchEvent" className={classes.link}>
+                      <MenuItem onClick={handleCloseProfile}>Search by Location</MenuItem>
+                    </Link>
+                    <Link to ="/SearchArtist" className={classes.link}>
+                      <MenuItem onClick={handleCloseProfile}>Search by Artist</MenuItem>
                     </Link>
                     <Link to="/" className={classes.link}>
                       <MenuItem onClick={(e) => Auth.logout()}>Logout</MenuItem>
