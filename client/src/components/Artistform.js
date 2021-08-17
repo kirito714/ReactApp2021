@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import moment from "moment"
 import Auth from "../utils/auth";
 import { getSavedConcertIds, saveConcertIds } from "../utils/localStorage";
-import { SearchConcertData } from "../utils/API";
+import { SearchArtistData } from "../utils/API";
 
 import { useMutation } from "@apollo/client";
 import { SAVE_CONCERT } from "../utils/mutations";
@@ -70,11 +70,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // FUNCTION TO SEARCH CONCERTS AND CHOOSE WHICH TO SAVE ................
-export default function Searchform() {
+export default function Artistform() {
   // create state to hold our returned API Data from predicthq
   const [searchedConcerts, setSearchedConcerts] = useState([]);
-  // create state to hold our search field data (from the input field in the search form)
-  const [searchInput, setSearchInput] = useState("");
   // another state for the artist search input
   const [artistInput, setArtistInput] = useState("");
 
@@ -95,13 +93,13 @@ export default function Searchform() {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    if (!searchInput) {
+    if (!artistInput) {
       return false;
     }
 
     try {
       //Use API function of searchConcertData in API.js to send GET resquest
-      const response = await SearchConcertData(searchInput, artistInput);
+      const response = await SearchArtistData(artistInput);
 
       //JSON the repsonse for searchConcertData
       const concertInfo = await response.results;
@@ -125,7 +123,6 @@ export default function Searchform() {
       //updating useState
       setSearchedConcerts(concertData);
       // clearing searchInput
-      setSearchInput("");
       setArtistInput("");
 
     } catch (err) {
@@ -204,7 +201,7 @@ export default function Searchform() {
       {/* SEARCH BAR */}
       <div className="search-container">
         <Paper className={classes.paper} elevation={3}>
-          <h1 className={classes.title}>Search for an Event Near You</h1>
+          <h1 className={classes.title}>Search for an Artist</h1>
           <Container maxWidth="sm">
             <form
               className={classes.root}
@@ -213,16 +210,17 @@ export default function Searchform() {
               onSubmit={handleFormSubmit}
             >
               <div>
-                <TextField
-                  id="filled-city-input"
-                  label="City"
-                  type="city"
-                  autoComplete="current-city"
+                  <TextField
+                  id="filled-artist-input"
+                  label="Artist"
+                  type="artist"
+                  autoComplete="current-artist"
                   variant="filled"
-                  value={searchInput}
-                  onChange={(e) => setSearchInput(e.target.value)}
-                ></TextField>
-              </div>
+                  value={artistInput}
+                  onChange={(e) => setArtistInput(e.target.value)}
+                  >
+                  </TextField>
+                </div>
               <div>
                 <Button
                   variant="contained"
