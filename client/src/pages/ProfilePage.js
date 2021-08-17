@@ -1,8 +1,9 @@
 import React from "react";
 import EventCard from "../components/EventCard";
 import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+
 import Auth from "../utils/auth";
 
 const useStyles = makeStyles(() => ({
@@ -41,26 +42,19 @@ const Profile = () => {
     <div className={classes.root}>
       <div className={classes.buttonDiv}>
         <Link to="/SearchEvent" className={classes.link}>
-          <Button variant="outlined" size="large" className={classes.button}>
-            Search by Area!
+          <Button variant="outlined" size="large" className={classes.button}
+          >
+            Search By Location
           </Button>
         </Link>
       </div>
       <div className={classes.buttonDiv}>
-        <Button
-          onClick={() => window.location.assign("/SearchEvent")}
-          className={classes.buttonProfile}
-        >
-          Search By Artist!
-        </Button>
-      </div>
-      <div className={classes.buttonDiv}>
-        <Button
-          onClick={() => window.location.assign("/SearchArtist")}
-          className={classes.buttonProfile}
-        >
-          Your Saved Concerts Here!!!
-        </Button>
+        <Link to="/SearchArtist" className={classes.link}>
+          <Button variant="outlined" size="large" className={classes.button}
+          >
+            Search By Artist
+          </Button>
+        </Link>
       </div>
       <EventCard />
     </div>

@@ -3,6 +3,7 @@ import moment from "moment";
 import Auth from "../utils/auth";
 import { getSavedConcertIds, saveConcertIds } from "../utils/localStorage";
 import { SearchArtistData } from "../utils/API";
+import { Link } from "react-router-dom";
 
 import { useMutation } from "@apollo/client";
 import { SAVE_CONCERT } from "../utils/mutations";
@@ -189,20 +190,18 @@ export default function Artistform() {
   return (
     <>
       <div className={classes.buttonDiv}>
-        <Button
-          onClick={() => window.location.assign("/Profile")}
-          className={classes.buttonProfile}
-        >
-          Your Saved Concerts Here!!!
-        </Button>
+        <Link to="/SearchEvent" className={classes.link}>
+            <Button className={classes.buttonProfile}>
+            Search By Location
+            </Button>
+        </Link>
       </div>
       <div className={classes.buttonDiv}>
-        <Button
-          onClick={() => window.location.assign("/SearchEvent")}
-          className={classes.buttonProfile}
-        >
-          Search By Area!
-        </Button>
+        <Link to="/Profile" className={classes.link}>
+            <Button className={classes.buttonProfile}>
+            Your Saved Concerts Here!
+            </Button>
+        </Link>
       </div>
       {/* SEARCH BAR */}
       <div className="search-container">
@@ -234,7 +233,7 @@ export default function Artistform() {
                   endIcon={<Icon>send</Icon>}
                   type="submit"
                 >
-                  On Search
+                  Search
                 </Button>
               </div>
             </form>
