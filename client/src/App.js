@@ -12,6 +12,8 @@ import HomePage from "./pages/Home";
 import Login from "./pages/Login";
 import Profile from "./pages/ProfilePage";
 import SearchPage from "./pages/SearchPage";
+import SearchArtist from "./pages/SearchArtist";
+import SearchEvent from "./pages/SearchEvent";
 import { setContext } from "@apollo/client/link/context";
 
 import Auth from "./utils/auth";
@@ -59,15 +61,31 @@ function App() {
         </Route>
 
         <Route
-          exact path="/Profile"
+          exact
+          path="/Profile"
           render={() =>
             Auth.loggedIn() ? <Profile /> : <Redirect to="/Login" />
           }
         />
         <Route
-          exact path="/SearchPage"
+          exact
+          path="/SearchPage"
           render={() =>
             Auth.loggedIn() ? <SearchPage /> : <Redirect to="/Login" />
+          }
+        />
+        <Route
+          exact
+          path="/SearchArtist"
+          render={() =>
+            Auth.loggedIn() ? <SearchArtist /> : <Redirect to="/Login" />
+          }
+        />
+        <Route
+          exact
+          path="/SearchEvent"
+          render={() =>
+            Auth.loggedIn() ? <SearchEvent /> : <Redirect to="/Login" />
           }
         />
 

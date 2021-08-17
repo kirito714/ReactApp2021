@@ -10,8 +10,6 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import "./cards.css";
 
-
-
 import { useQuery, useMutation } from "@apollo/client";
 import { GET_ME } from "../utils/queries";
 import { REMOVE_CONCERT } from "../utils/mutations";
@@ -26,10 +24,10 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     width: "70ch",
-    padding: 25
+    padding: 25,
   },
   title: {
-    textAlign: "center"
+    textAlign: "center",
   },
   button: {
     margin: theme.spacing(1),
@@ -49,15 +47,15 @@ const useStyles = makeStyles((theme) => ({
     marginRight: 40,
     display: "flex",
     flexDirection: "row",
-    justifyContent: "flex-end"
+    justifyContent: "flex-end",
   },
   link: {
-    textDecoration: "none"
+    textDecoration: "none",
   },
   buttonProfile: {
     color: "white",
     backgroundColor: "brown",
-    opacity: "90%"
+    opacity: "90%",
   },
 }));
 
@@ -94,66 +92,71 @@ export default function EventCard() {
   return (
     <>
       <div className="card-container">
-        {userData.me.saveConcert.map((concert) => {
-          return (
-            <div className="card" key={concert.concertId}>
-              <Card className={classes.card}>
-                <CardActionArea>
-                  <CardMedia
-                    className={classes.media}
-                    image="https://source.unsplash.com/random"
-                    title={concert.title}
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      {concert.title}
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      color="textSecondary"
-                      component="p"
+        {userData.me.saveConcert.length > 0 ? (
+          userData.me.saveConcert.map((concert) => {
+            return (
+              <div className="card" key={concert.concertId}>
+                <Card className={classes.card}>
+                  <CardActionArea>
+                    <CardMedia
+                      className={classes.media}
+                      image="https://source.unsplash.com/random"
+                      title={concert.title}
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="h2">
+                        {concert.title}
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        color="textSecondary"
+                        component="p"
+                      >
+                        {concert.venue}
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        color="textSecondary"
+                        component="p"
+                      >
+                        {concert.date}
+                      </Typography>
+                      <br></br>
+                      <a
+                        href={`https://www.ticketmaster.com/search?q=" ${concert.title}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="link"
+                      >
+                        Buy tickets here
+                      </a>
+                    </CardContent>
+                  </CardActionArea>
+                  <CardActions>
+                    <Button
+                      size="small"
+                      color="primary"
+                      type="button"
+                      onClick={function removeOne() {
+                        window.location.assign("/Profile");
+                        const removeMongo = handleRemoveConcert(
+                          concert.concertId
+                        );
+                        const removeLocal = removeConcertId(concert.concertId);
+                        return removeMongo, removeLocal;
+                      }}
                     >
-                      {concert.venue}
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      color="textSecondary"
-                      component="p"
-                    >
-                      {concert.date}
-                    </Typography>
-                    <br></br>
-                    <a
-                      href={`https://www.ticketmaster.com/search?q=" ${concert.title}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="link"
-                    >
-                      Buy tickets here
-                    </a>
-                  </CardContent>
-                </CardActionArea>
-                <CardActions>
-                  <Button
-                    size="small"
-                    color="primary"
-                    type="button"
-                    onClick={function removeOne() {
-                      window.location.assign('/Profile');
-                      const removeMongo = handleRemoveConcert(concert.concertId);
-                      const removeLocal = removeConcertId(concert.concertId);
-                      return removeMongo,removeLocal;
-                    }}
-                  >
-                    Delete Event
-                  </Button>
-                </CardActions>
-              </Card>
-            </div>
-          );
-        })}
+                      Delete Event
+                    </Button>
+                  </CardActions>
+                </Card>
+              </div>
+            );
+          })
+        ) : (
+          <h1>No Saved Events!</h1>
+        )}
       </div>
     </>
   );
 }
-
