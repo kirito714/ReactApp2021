@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import moment from "moment";
 import Auth from "../utils/auth";
 import { getSavedConcertIds, saveConcertIds } from "../utils/localStorage";
-import { SearchConcertData } from "../utils/API";
+import { SearchConcertData, findArtistImage } from "../utils/API";
 import { Link } from "react-router-dom";
 
 import { useMutation } from "@apollo/client";
@@ -76,8 +76,6 @@ export default function Searchform() {
   const [searchedConcerts, setSearchedConcerts] = useState([]);
   // create state to hold our search field data (from the input field in the search form)
   const [searchInput, setSearchInput] = useState("");
-  // another state for the artist search input
-  const [artistInput, setArtistInput] = useState("");
 
   // create a state to hold the saved concertId to use for local storage
   // getSavedConcertIds is a function in localstorage.js to get the ids in local storage
@@ -102,7 +100,7 @@ export default function Searchform() {
 
     try {
       //Use API function of searchConcertData in API.js to send GET resquest
-      const response = await SearchConcertData(searchInput, artistInput);
+      const response = await SearchConcertData(searchInput);
 
       //JSON the repsonse for searchConcertData
       const concertInfo = await response.results;
@@ -126,7 +124,6 @@ export default function Searchform() {
       setSearchedConcerts(concertData);
       // clearing searchInput
       setSearchInput("");
-      setArtistInput("");
     } catch (err) {
       console.error(err);
     }
@@ -259,7 +256,10 @@ export default function Searchform() {
                 <CardActionArea>
                   <CardMedia
                     className={classes.media}
-                    image="https://source.unsplash.com/random"
+                    image={
+                        findArtistImage(concert.title)
+                        
+                      }
                     title={concert.title}
                   />
                   <CardContent>

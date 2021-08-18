@@ -40,8 +40,6 @@ export async function SearchConcertData(city) {
     "start.gt": `${todaysDate}`,
   }).toString();
 
-  console.log(predictHQParams);
-
   const apiPredict = process.env.REACT_APP_EVENT_KEY;
 
   const res = await (
@@ -85,4 +83,20 @@ export async function SearchArtistData(artist) {
   return res;
 }
 
+export async function findArtistImage(concert) {
+  const spotifyParams = new URLSearchParams({
+    q: `${concert}`
+  });
 
+  const apiSpotify = process.env.REACT_SPOTIFY_API;
+
+  const response = await(
+    await fetch(`https://api.spotify.com/v1/search?${spotifyParams}&type=artist`, {
+      headers: {
+        Authorization: `Bearer ${apiSpotify}`
+      }
+    })
+  ).json();
+
+  return response;
+}
