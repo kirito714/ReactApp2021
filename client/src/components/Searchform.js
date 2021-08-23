@@ -95,6 +95,7 @@ export default function Searchform() {
     event.preventDefault();
 
     if (!searchInput) {
+      window.alert("Please input a valid city")
       return false;
     }
 
@@ -108,6 +109,11 @@ export default function Searchform() {
 
       //Mapping over data we get back from API and
       //getting each piece of info for our model
+
+    if (response.length < 1 ) {
+      window.alert("City not found, please re-enter!")
+    }
+    else {
       const concertData = concertInfo.map((concert) => ({
         concertId: concert.id,
         title: concert.title,
@@ -124,9 +130,9 @@ export default function Searchform() {
       setSearchedConcerts(concertData);
       // clearing searchInput
       setSearchInput("");
-    } catch (err) {
+    }} catch (err) {
       console.error(err);
-    }
+    } 
   };
 
   //USE MUTATION TO UPDATE DATABASE

@@ -25,6 +25,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
+import Alert from '@material-ui/lab/Alert';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -106,6 +107,13 @@ export default function Artistform() {
       const concertInfo = await response.results;
       console.log(concertInfo);
 
+      if (concertInfo.length < 1) {
+         return (
+          window.alert("Artist not found in your area, please try a new artist name")
+          );
+         }
+      else {
+
       //Mapping over data we get back from API and
       //getting each piece of info for our model
       const concertData = concertInfo.map((concert) => ({
@@ -124,6 +132,7 @@ export default function Artistform() {
       setSearchedConcerts(concertData);
       // clearing searchInput
       setArtistInput("");
+    }
     } catch (err) {
       console.error(err);
     }

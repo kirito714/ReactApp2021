@@ -20,7 +20,11 @@ export async function SearchConcertData(city) {
       `https://api.openweathermap.org/data/2.5/weather?${openWeatherParams}`
     )
   ).json();
-
+      if (data.cod == 404) {
+        console.log(data)
+        window.alert("Please input a valid city")
+        return
+      }
   const lat = data.coord.lat;
   const lon = data.coord.lon;
   const today = new Date();
