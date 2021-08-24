@@ -3,6 +3,8 @@ import EventCard from "../components/EventCard";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
+import { useQuery } from "@apollo/client";
+import { GET_ME } from "../utils/queries";
 
 import Auth from "../utils/auth";
 
@@ -31,12 +33,24 @@ const useStyles = makeStyles(() => ({
 //FUNCTION TO CREATE SAVED CONCERTS CARDS ..................
 const Profile = () => {
   const classes = useStyles();
+  
+  //query the database and check both the cache and network for updates
+  const { loading, data } = useQuery(GET_ME, {
+    fetchPolicy: "cache-and-network"
+  });
+  
+  if (loading) {
+    return <h2> LOADING... </h2>;
+  }
+  const userData = data.me;
+  console.log(userData)
 
   const token = Auth.loggedIn() ? Auth.getToken() : null;
 
   if (!token) {
     return false;
   }
+
 
   return (
     <div className={classes.root}>
@@ -56,7 +70,7 @@ const Profile = () => {
           </Button>
         </Link>
       </div>
-      <EventCard />
+      <EventCard props={ userData } />
     </div>
   );
 };

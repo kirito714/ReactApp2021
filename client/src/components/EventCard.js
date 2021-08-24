@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Auth from "../utils/auth";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -10,7 +10,8 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import "./cards.css";
 
-import { useQuery, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
+import { useLazyQuery } from '@apollo/client';
 import { GET_ME } from "../utils/queries";
 import { REMOVE_CONCERT } from "../utils/mutations";
 import { removeConcertId } from "../utils/localStorage";
@@ -59,17 +60,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EventCard() {
+export default function EventCard( {props} ) {
   const classes = useStyles();
 
-  const { loading, data } = useQuery(GET_ME);
-  const userData = data;
-  console.log(userData);
+  console.log(props);
 
-  const [removeConcert, { error }] = useMutation(REMOVE_CONCERT);
+  //lazy loading.. will only get triggered when calling the getUser function
+  //down in the delete button
+  const [getUser, { data }] = useLazyQuery(GET_ME, {
+    fetchPolicy: "cache-and-network"
+  })
 
+  const [removeConcert] = useMutation(REMOVE_CONCERT);
+  
   const handleRemoveConcert = async (concertId) => {
-    console.log(concertId);
+    // console.log(concertId);
 
     // get token from Auth.js
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -85,15 +90,11 @@ export default function EventCard() {
     });
   };
 
-  if (loading) {
-    return <h2> LOADING... </h2>;
-  }
-
   return (
     <>
       <div className="card-container">
-        {userData.me.saveConcert.length > 0 ? (
-          userData.me.saveConcert.map((concert) => {
+        {props.saveConcert.length > 0 ? (
+          props.saveConcert.map((concert) => {
             return (
               <div className="card" key={concert.concertId}>
                 <Card className={classes.card}>
@@ -138,11 +139,12 @@ export default function EventCard() {
                       color="primary"
                       type="button"
                       onClick={function removeOne() {
-                        window.location.assign("/Profile");
+                        // window.location.assign("/Profile");
                         const removeMongo = handleRemoveConcert(
                           concert.concertId
                         );
                         const removeLocal = removeConcertId(concert.concertId);
+                        getUser();
                         return removeMongo, removeLocal;
                       }}
                     >

@@ -25,7 +25,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
-import Alert from '@material-ui/lab/Alert';
+// import Alert from '@material-ui/lab/Alert';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -166,9 +166,7 @@ export default function Artistform() {
     const concertToSave = searchedConcerts.find(
       (concert) => concert.concertId === concertId
     );
-
-    console.log(`This is the concertToSave ${concertToSave}`);
-
+    
     // get token from Auth.js
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
