@@ -124,7 +124,7 @@ export default function EventCard( {props} ) {
                       </Typography>
                       <br></br>
                       <a
-                        href={`https://www.ticketmaster.com/search?q=" ${concert.title}`}
+                        href={`https://www.ticketmaster.com/search?q=${concert.title}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="link"

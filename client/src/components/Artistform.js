@@ -26,6 +26,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 // import Alert from '@material-ui/lab/Alert';
+import { findArtistImage } from "../utils/API";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -263,11 +264,14 @@ export default function Artistform() {
                 <CardActionArea>
                   <CardMedia
                     className={classes.media}
-                    image="https://source.unsplash.com/random"
+                    image={
+                      // findArtistImage(concert.title)
+                       "https://source.unsplash.com/random"
+                    }
                     title={concert.title}
                   />
                   <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
+                    <Typography gutterBottom variant="h6" component="h2">
                       {concert.title}
                     </Typography>
                     <Typography
@@ -286,7 +290,7 @@ export default function Artistform() {
                     </Typography>
                     <br></br>
                     <a
-                      href={`https://www.ticketmaster.com/search?q=" ${concert.title}`}
+                      href={`https://www.ticketmaster.com/search?q=${concert.title}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="link"

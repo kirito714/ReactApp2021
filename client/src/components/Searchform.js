@@ -263,8 +263,8 @@ export default function Searchform() {
                   <CardMedia
                     className={classes.media}
                     image={
-                        findArtistImage(concert.title)
-                        
+                        // findArtistImage(concert.title)
+                         "https://source.unsplash.com/random"
                       }
                     title={concert.title}
                   />
@@ -288,7 +288,7 @@ export default function Searchform() {
                     </Typography>
                     <br></br>
                     <a
-                      href={`https://www.ticketmaster.com/search?q=" ${concert.title}`}
+                      href={`https://www.ticketmaster.com/search?q=${concert.title}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="link"
