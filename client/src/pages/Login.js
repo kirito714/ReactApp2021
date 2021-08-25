@@ -26,6 +26,14 @@ const useStyles = makeStyles((theme) => ({
   },
   container: {
     marginTop: "150px"
+  },
+  error: {
+    color: "white",
+    fontSize: "1.5rem",
+    textAlign: "center",
+    backgroundColor: "brown",
+    opacity: "95%",
+    padding: "10px",
   }
 }));
 
@@ -78,13 +86,9 @@ const Login = (props) => {
           <form className={classes.root} noValidate autoComplete="off" onSubmit={handleFormSubmit}>
             <div>
             <TextField
-              // className="form-input"
-              // placeholder="Your email"
-              // name="email"
-              // type="email"
               id="filled-email-input"
               name="email"
-              label="Your email"
+              label="Email"
               type="email"
               autoComplete="current-email"
               variant="filled"
@@ -95,13 +99,9 @@ const Login = (props) => {
 
             <div>
             <TextField
-              // className="form-input"
-              // placeholder="******"
-              // name="password"
-              // type="password"
               id="filled-password-input"
               name="password"
-              label="******"
+              label="Password"
               type="password"
               autoComplete="current-password"
               variant="filled"
@@ -121,7 +121,7 @@ const Login = (props) => {
           </form>
         )}
 
-        {error && (<div>{error.message}</div>)}
+        {error && (<div className={classes.error}>{error.message}</div>)}
 
         </Container>
 

@@ -26,6 +26,14 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     marginLeft: 215
   },
+  error: {
+    color: "white",
+    fontSize: "1.5rem",
+    textAlign: "center",
+    backgroundColor: "brown",
+    opacity: "95%",
+    padding: "10px",
+  }
 }));
 
 // signUp for that handles formState
@@ -80,7 +88,7 @@ export default function SignupPage() {
               <TextField
                 id="filled-username-input"
                 name="username"
-                label="Your username"
+                label="Username"
                 type="username"
                 autoComplete="current-username"
                 variant="filled"
@@ -94,7 +102,7 @@ export default function SignupPage() {
               <TextField
                 id="filled-email-input"
                 name="email"
-                label="Your email"
+                label="Email"
                 type="email"
                 autoComplete="current-email"
                 variant="filled"
@@ -127,7 +135,7 @@ export default function SignupPage() {
               </form>
             )}
 
-        {error && <div>{error.message}</div>}
+        {error && <div className={classes.error}>{error.message}</div>}
       </Container>
     </>
   );
