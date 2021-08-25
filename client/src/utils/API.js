@@ -87,20 +87,27 @@ export async function SearchArtistData(artist) {
   return res;
 }
 
-export async function findArtistImage(concert) {
-  const spotifyParams = new URLSearchParams({
-    q: `${concert}`
-  });
-
-  const apiSpotify = process.env.REACT_SPOTIFY_API;
-
-  const response = await(
-    await fetch(`https://api.spotify.com/v1/search?${spotifyParams}&type=artist`, {
-      headers: {
-        Authorization: `Bearer ${apiSpotify}`
-      }
-    })
+export async function findArtistImage(artist) {
+  const artistName = artist.toLowerCase()
+  console.log(artistName)
+  const res = await(
+    await fetch(`https://theaudiodb.com/api/v1/json/1/search.php?s=${artistName}`
+    )
   ).json();
 
-  return response;
+  const artistid = res.artists[0].idArtist
+  console.log(artistid)
+
+  
+  const apiaudiodb = process.env.REACT_APP_AUDIODB_KEY;
+
+  const response = await(
+    await fetch(`https://theaudiodb.com/api/v1/json/${apiaudiodb}/artist.php?i=${artistid}`, {
+
+    })
+  ).json();
+const image = response.artists[0].strArtistThumb
+console.log(image)  
+return image;
+  
 }
